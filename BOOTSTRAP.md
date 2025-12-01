@@ -46,6 +46,7 @@ Especificações necessárias em arquivos markdown:
     - ARCHITECTURE.md (Arquitetura)
     - TESTING_STRATEGY.md (Estratégia de testes)
     - ROADMAP.md (Roadmap)
+    - BACKLOG.md (Backlog)
     - TASKS.md (Tarefas)
 
 - Na raiz:
