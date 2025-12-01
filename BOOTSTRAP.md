@@ -31,7 +31,7 @@ De toda forma, acredito que uma boa base de astro bem documentada vai servir par
 
 ## Abordagem
 
-Devemos seguir a abordagem: SDD -> BDD -> TDD -> OUTROS.
+Devemos seguir a abordagem: SDD -> (Dev Container) -> BDD -> TDD -> OUTROS.
 
 ### SDD - Specification Driven Development
 
@@ -53,6 +53,10 @@ Especificações necessárias em arquivos markdown:
     - AGENTS.md (Agentes)
     - CONTRIBUTING.md (Contribuindo)
     - CODE_OF_CONDUCT.md (Código de conduta)
+
+### Dev Container
+
+A análise de viabilidade técnica deve servir para definir um dev container para o projeto que sirva para resolver problemas de ambiente das próximas etapas da abordagem.
 
 ### BDD - Behavior Driven Development
 
