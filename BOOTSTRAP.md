@@ -37,19 +37,22 @@ Devemos seguir a abordagem: SDD -> BDD -> TDD -> OUTROS.
 
 Especificações necessárias em arquivos markdown:
 
-- Na raiz:
-    - README.md
-    - AGENTS.md
-
 - Em `/docs`:
-    - USER_STORIES.md
-    - PRODUCT.md
-    - SPECS.md
-    - DESIGN.md
-    - ARCHITECTURE.md
-    - TESTING_STRATEGY.md
-    - ROADMAP.md
-    - TASKS.md
+    - USER_STORIES.md (Histórias de usuário)
+    - ANALYSIS.md (Análise de viabilidade)
+    - PRODUCT.md (Produto final)
+    - SPECS.md (Especificações)
+    - DESIGN.md (Design)
+    - ARCHITECTURE.md (Arquitetura)
+    - TESTING_STRATEGY.md (Estratégia de testes)
+    - ROADMAP.md (Roadmap)
+    - TASKS.md (Tarefas)
+
+- Na raiz:
+    - README.md (README)
+    - AGENTS.md (Agentes)
+    - CONTRIBUTING.md (Contribuindo)
+    - CODE_OF_CONDUCT.md (Código de conduta)
 
 ### BDD - Behavior Driven Development
 
