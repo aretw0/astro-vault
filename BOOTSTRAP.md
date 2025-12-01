@@ -35,15 +35,21 @@ Devemos seguir a abordagem: SDD -> BDD -> TDD -> OUTROS.
 
 ### SDD - Specification Driven Development
 
-Especificações necessárias em arquivos markdown na pasta `/docs`:
+Especificações necessárias em arquivos markdown:
 
-- USER_STORIES.md
-- PRODUCT.md
-- SPECS.md
-- DESIGN.md
-- ARCHITECTURE.md
-- TESTING_STRATEGY.md
-- IMPLEMENTATION_PLAN.md
+- Na raiz:
+    - README.md
+    - AGENTS.md
+
+- Em `/docs`:
+    - USER_STORIES.md
+    - PRODUCT.md
+    - SPECS.md
+    - DESIGN.md
+    - ARCHITECTURE.md
+    - TESTING_STRATEGY.md
+    - ROADMAP.md
+    - TASKS.md
 
 ### BDD - Behavior Driven Development
 
