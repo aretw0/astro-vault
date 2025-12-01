@@ -1,72 +1,59 @@
 # BOOTSTRAP.md
 
-Esse arquivo servei para fazer o bootstrap desse repositório em branco, com apenas o git inicializado.
+Este arquivo serve para fazer o bootstrap deste repositório em branco, com apenas o git inicializado.
 
 ## Objetivo
 
-Repositório template para caixa de notas, que deve ser editada via obsidian ou vscode, contendo estrutura para publicar conteúdo estático no github pages usando o framework Astro.
+Repositório template para "Jardim Digital" (Digital Garden) ou Blog, editável via Obsidian ou VSCode, contendo estrutura para publicar conteúdo estático no GitHub Pages usando o framework Astro.
 
 ## Visão Geral
 
-Visualizo que a maior parte do usuários desse template terá a mim como seu guia nesse mundo de facilidades que vem a partir de um repositório git, no entanto, com boa documentação eles podem facilmente seguir com as próprias mãos.
+Visualizo que a maior parte dos usuários deste template terá a mim como guia. No entanto, com boa documentação, eles devem ser capazes de seguir com as próprias mãos.
 
-De toda forma, acredito que uma boa base de astro bem documentada vai servir para evoluir o projeto para outros usos. No entanto, para esse início, devemos nos concentrar para que o público-alvo inicial seja capaz de se beneficiar do template.
+Acredito que uma boa base de Astro bem documentada servirá para evoluir o projeto para outros usos. Porém, o foco inicial é garantir que o público-alvo consiga se beneficiar do template sem fricção excessiva.
 
-### Público-alvo inicial
+### Público-alvo
 
-1. Usuário que gostaria de ter um perfil online no seu namespace de usuário do github.
-    - Perfil do github.
-    - Portfólio online.
-    - Blog pessoal.
-    - Geralmente desenvolvedor, mas não assumir que é.
+1.  **O Desenvolvedor (Eu/Você)**
+    *   Perfil do GitHub, Portfólio, Blog técnico.
+    *   Sabe usar git, mas quer um setup pronto e eficiente.
 
-2. Prestadora de serviço (manicure, cabelereira, e etc) que gostaria de ter uma presença online para suas produção que no momento são postadas apenas no instagram.
+2.  **A Prestadora de Serviço (Ex: Manicure, Artesã)**
+    *   Quer presença online além do Instagram.
+    *   **Necessidade Crítica:** A interface administrativa será o **Obsidian**.
+    *   *Ação:* Precisamos de um tutorial focado em "Como configurar Obsidian + Git Plugin" para que ela nunca precise abrir um terminal.
 
-    - Uma pessoa que demoraria a encontrar as formas de customizar, mas deve encontrar algo que goste logo.
-    - Possível interessado em evoluir o projeto para incluir seu e-commerce (carece de pesquisa para saber as limitações do github pages).
-
-3. Usuário que gostaria de ter uma presença online para suas poesias que no momento são postadas apenas no instagram.
-    
-    - Uma pessoa como essa rapidamente iria atrás de customizar o template, e não gosta de ficar presa a algo que limitasse a sua expressão diagramática. Ou seja, precisamos acertar na documentação de como atingir certos efeitos mais específicos no texto escrito, dando a liberdade pro artista brincar. Conseguimos isso com o Astro? É algo que precisamos confirmar.
+3.  **O Artista (Ex: Poeta)**
+    *   Quer liberdade visual e não quer ficar preso a layouts rígidos.
+    *   *Desafio:* O Astro permite essa flexibilidade? Precisamos validar se a customização via Markdown/Frontmatter é suficiente ou se precisaremos de componentes customizados fáceis de usar.
 
 ## Abordagem
 
-Devemos seguir a abordagem: SDD -> (Dev Container) -> BDD -> TDD -> OUTROS.
+Seguiremos uma abordagem incremental para evitar *over-engineering*:
+**Spike -> SDD Simplificado -> (Dev Container) -> BDD/TDD**
 
-### SDD - Specification Driven Development
+### 1. Fase 0: Spike (Prova de Conceito)
+Antes de qualquer documentação pesada, precisamos validar a integração técnica crítica.
+*   **Objetivo:** Renderizar uma nota do Obsidian contendo **Wikilinks (`[[nota]]`)** e **Imagens locais** dentro do Astro.
+*   *Por que?* Se isso for complexo demais, inviabiliza o uso para o público não-técnico.
 
-Especificações necessárias em arquivos markdown:
+### 2. SDD - Specification Driven Development (Simplificado)
+Evitar a "burocracia de documentação". Focaremos em poucos arquivos vivos em `/docs`:
 
-- Em `/docs`:
-    - USER_STORIES.md (Histórias de usuário)
-    - ANALYSIS.md (Análise de viabilidade)
-    - PRODUCT.md (Produto final)
-    - SPECS.md (Especificações)
-    - DESIGN.md (Design)
-    - ARCHITECTURE.md (Arquitetura)
-    - TESTING_STRATEGY.md (Estratégia de testes)
-    - ROADMAP.md (Roadmap)
-    - BACKLOG.md (Backlog)
-    - TASKS.md (Tarefas)
+*   `PRODUCT.md`: Visão, Personas e User Stories (O "Porquê" e "Para Quem").
+*   `TECHNICAL.md`: Arquitetura, Decisões de Design (Obsidian -> Astro) e Stack.
+*   `PLANNING.md`: Roadmap, Backlog e Tarefas imediatas.
 
-- Na raiz:
-    - README.md (README)
-    - AGENTS.md (Agentes)
-    - CONTRIBUTING.md (Contribuindo)
-    - CODE_OF_CONDUCT.md (Código de conduta)
+*Na raiz:*
+*   `README.md`: Guia de início rápido.
 
-### Dev Container
+### 3. Dev Container & Ambiente
+Definir um ambiente reprodutível (Dev Container) apenas após validar o Spike, para garantir que outros devs possam colaborar sem "works on my machine".
 
-A análise de viabilidade técnica deve servir para definir um dev container para o projeto que sirva para resolver problemas de ambiente das próximas etapas da abordagem.
+### 4. Qualidade (BDD/TDD)
+*   **BDD:** Testes de aceitação para garantir que o fluxo "Escrever no Obsidian -> Push -> Site Atualizado" funcione.
+*   **TDD:** Testes unitários para lógicas complexas (ex: parsers de markdown customizados), se houver.
 
-### BDD - Behavior Driven Development
-
-Definir qual ambiente declarativo de BDD para a execução de testes de aceitação.
-
-### TDD - Test Driven Development
-
-Definir qual ambiente declarativo de TDD para a execução de testes unitários.
-
-### OUTROS
-
-Nesse ponto devemos nos concentrar em deixar uma boa documentação desse projeto garantindo a comunicação do mesmo. Podemos nos usufruir do próprio github pages para publicar a documentação do projeto.
+### Próximos Passos Imediatos
+1.  [ ] Criar `docs/PLANNING.md` com o backlog inicial.
+2.  [ ] Executar o **Spike** da integração Obsidian-Astro.
