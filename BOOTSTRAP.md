@@ -54,6 +54,11 @@ Definir um ambiente reprodutível (Dev Container) apenas após validar o Spike, 
 *   **BDD:** Testes de aceitação para garantir que o fluxo "Escrever no Obsidian -> Push -> Site Atualizado" funcione.
 *   **TDD:** Testes unitários para lógicas complexas (ex: parsers de markdown customizados), se houver.
 
-### Próximos Passos Imediatos
-1.  [ ] Criar `docs/PLANNING.md` com o backlog inicial.
-2.  [ ] Executar o **Spike** da integração Obsidian-Astro.
+### Próximos Passos Imediatos (Checklist de Extinção)
+Esta seção serve para guiar a **dissolução** deste arquivo `BOOTSTRAP.md` em documentos definitivos e código. Assim que esta lista for concluída, este arquivo deverá ser deletado.
+
+1.  [x] Criar `docs/PLANNING.md` com o backlog inicial.
+2.  [ ] Migrar "Visão Geral" e "Público-alvo" para `docs/PRODUCT.md`.
+3.  [ ] Migrar "Abordagem Técnica" para `docs/TECHNICAL.md`.
+4.  [ ] Executar o **Spike** da integração Obsidian-Astro (Inicializar Projeto).
+5.  [ ] Deletar `BOOTSTRAP.md`.
