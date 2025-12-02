@@ -40,7 +40,10 @@ Evitar a "burocracia de documentação". Focaremos em poucos arquivos vivos em `
 
 Definir um ambiente reprodutível (Dev Container) apenas após validar o Spike.
 
-### 4. Qualidade (BDD/TDD)
+### 4. Qualidade (QA & Testing)
 
+* **Style Guide (Kitchen Sink):**
+  * Mantemos o arquivo `src/content/vault/StyleGuide.md` (antigo Spike) como uma "Nota Mestra" de teste.
+  * **Objetivo:** Teste de Regressão Visual. Sempre que alterarmos CSS ou Layouts, verificamos essa nota para garantir que imagens, links e formatações complexas continuam funcionando.
 * **BDD:** Testes de aceitação para garantir que o fluxo "Escrever no Obsidian -> Push -> Site Atualizado" funcione.
 * **TDD:** Testes unitários para lógicas complexas.

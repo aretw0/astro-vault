@@ -4,5 +4,9 @@
   },
   "[astro]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "foam.files.include": ["src/content/**/*"],
+  "foam.files.newNotePath": "currentDir",
+  "foam.files.exclude": [".astro", "node_modules", "public"],
+  "foam.files.attachmentExtensions": "pdf mp3 webm wav m4a mp4 avi mov rtf txt doc docx pages xls xlsx numbers ppt pptm pptx png svg"
 }
