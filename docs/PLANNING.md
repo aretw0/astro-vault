@@ -8,9 +8,9 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 
 *Foco: Garantir que a integração Obsidian -> Astro é viável sem hacks excessivos.*
 
-- [ ] Validar renderização de Wikilinks (`[[nota]]`) no Astro.
-- [ ] Validar renderização de imagens locais (`![[imagem.png]]`) no Astro.
-- [ ] Definir stack de plugins (remark/rehype) necessária.
+- [x] Validar renderização de Wikilinks (`[[nota]]`) no Astro.
+- [x] Validar renderização de imagens locais (`![[imagem.png]]`) no Astro.
+- [x] Definir stack de plugins (remark/rehype) necessária.
 
 ### Fase 1: MVP (Minimum Viable Product)
 
@@ -46,4 +46,4 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 
 ## Tarefas Atuais
 
-1. [ ] Executar Spike de Integração.
+1. [ ] Executar Fase 1: MVP (Limpeza, Layout, Estilos).

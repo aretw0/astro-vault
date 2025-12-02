@@ -5,12 +5,24 @@
 Seguiremos uma abordagem incremental para evitar *over-engineering*:
 **Spike -> SDD Simplificado -> (Dev Container) -> BDD/TDD**
 
-### 1. Fase 0: Spike (Prova de Conceito)
+### 1. Fase 0: Spike (Prova de Conceito) - [CONCLUÍDO]
 
-Antes de qualquer documentação pesada, precisamos validar a integração técnica crítica.
+**Resultado:** Sucesso. A integração técnica foi validada e implementada.
 
-* **Objetivo:** Renderizar uma nota do Obsidian contendo **Wikilinks (`[[nota]]`)** e **Imagens locais** dentro do Astro.
-* *Por que?* Se isso for complexo demais, inviabiliza o uso para o público não-técnico.
+#### Decisões Técnicas (ADR - Architecture Decision Record)
+
+1. **Wikilinks:**
+    * **Decisão:** Usar `remark-wiki-link`.
+    * **Configuração:** `pageResolver` customizado para slugify (`Note A` -> `note-a`) e `hrefTemplate` apontando para `/vault/`.
+
+2. **Imagens (`![[img]]`):**
+    * **Problema:** Obsidian usa caminhos relativos/mágicos; Astro exige caminhos explícitos.
+    * **Solução (Plugin):** Criamos `src/plugins/remark-obsidian-images.js` que transforma `![[img.png]]` em `![img](/vault-images/img.png)`.
+    * **Solução (Sync):** Criamos uma Integração Astro (`src/integrations/sync-assets.js`) que copia recursivamente imagens de `src/content/vault` para `public/vault-images` antes do build.
+
+3. **Namespacing de Assets:**
+    * `public/assets/`: Reservado para assets manuais do site (logo, favicon). Versionado no Git.
+    * `public/vault-images/`: Reservado para imagens sincronizadas do Obsidian. **Ignorado no Git** (pois a fonte da verdade é o `src/content/vault`).
 
 ### 2. SDD - Specification Driven Development (Simplificado)
 
