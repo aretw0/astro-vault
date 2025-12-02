@@ -1,5 +1,5 @@
 {
-  "name": "y",
+  "name": "astro-vault",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,7 +9,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.3"
+    "astro": "^5.16.3",
+    "remark-wiki-link": "^2.0.1",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "prettier": "3.7.3",
