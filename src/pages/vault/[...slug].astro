@@ -1,5 +1,7 @@
 ---
-import { getCollection, render, type CollectionEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
   const vaultEntries = await getCollection("vault");
@@ -17,5 +19,9 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<h1>{entry.id}</h1>
-<Content />
+<BaseLayout title={entry.id}>
+  <article>
+    <h1>{entry.id}</h1>
+    <Content />
+  </article>
+</BaseLayout>

@@ -1,4 +1,4 @@
-# Note B
+# LinkedNote
 
-This is Note B.
-Back to [[Note A]].
+This is a linked note.
+Back to [[StyleGuide]].
