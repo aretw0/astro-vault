@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const vaultEntries = await getCollection("vault");
+const contentEntries = await getCollection("content");
 ---
 
 <BaseLayout title="Home">
@@ -10,9 +10,9 @@ const vaultEntries = await getCollection("vault");
   <p>Here are my notes:</p>
   <ul>
     {
-      vaultEntries.map((entry) => (
+      contentEntries.map((entry) => (
         <li>
-          <a href={`/vault/${entry.id}`}>{entry.id}</a>
+          <a href={`/${entry.id}`}>{entry.id}</a>
         </li>
       ))
     }

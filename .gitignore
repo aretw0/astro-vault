@@ -23,5 +23,5 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# generated assets (synced from vault)
-public/vault-images/
+# generated assets (synced from content)
+public/assets/

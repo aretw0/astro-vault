@@ -25,7 +25,7 @@ export default function remarkObsidianImages() {
 
         children.push({
           type: 'image',
-          url: `/vault-images/${filename}`,
+          url: `/assets/${filename}`,
           alt: alt || filename,
           title: null
         });

@@ -11,7 +11,7 @@ export default defineConfig({
       remarkObsidianImages,
       [wikiLinkPlugin, {
         pageResolver: (name) => [name.toLowerCase().replace(/ /g, '-')],
-        hrefTemplate: (permalink) => `/vault/${permalink}`,
+        hrefTemplate: (permalink) => `/${permalink}`,
       }]
     ]
   }
