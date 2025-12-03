@@ -13,7 +13,7 @@ export default function syncAssets() {
       'astro:server:setup': async ({ server }) => {
         // Watch for changes
         server.watcher.on('add', (filePath) => {
-          if (filePath.includes('src/content/vault')) {
+          if (filePath.includes('src/content')) {
             syncFiles();
           }
         });
@@ -26,8 +26,8 @@ export default function syncAssets() {
 }
 
 function syncFiles() {
-  const sourceDir = 'src/content/vault';
-  const targetDir = 'public/vault-images';
+  const sourceDir = 'src/content';
+  const targetDir = 'public/assets';
   
   // Create target dir if not exists
   if (!fs.existsSync(targetDir)) {
