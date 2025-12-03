@@ -1,7 +1,6 @@
 ---
+layout: ../layouts/BaseLayout.astro
 title: Minha Nova Home
-layout: base
-draft: false
 ---
 
 A Digital Garden template powered by **Astro** and **Obsidian**.
