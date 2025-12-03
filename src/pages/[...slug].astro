@@ -4,9 +4,12 @@ import { getCollection, render } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-  const contentEntries = await getCollection("content");
+  const contentEntries = await getCollection("content", ({ data }) => {
+    return import.meta.env.PROD ? data.draft !== true : true;
+  });
+
   return contentEntries.map((entry: CollectionEntry<"content">) => ({
-    params: { slug: entry.id },
+    params: { slug: entry.id === "index" ? undefined : entry.id },
     props: { entry },
   }));
 }
@@ -17,11 +20,20 @@ interface Props {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+
+// Layout Mapping
+const layouts = {
+  base: BaseLayout,
+  landing: BaseLayout, // Placeholder for now
+  minimal: BaseLayout, // Placeholder for now
+};
+
+const Layout = layouts[entry.data.layout] || BaseLayout;
 ---
 
-<BaseLayout title={entry.id}>
+<Layout title={entry.data.title || entry.id}>
   <article>
-    <h1>{entry.id}</h1>
+    <h1>{entry.data.title || entry.id}</h1>
     <Content />
   </article>
-</BaseLayout>
+</Layout>
