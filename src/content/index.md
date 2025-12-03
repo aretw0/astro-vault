@@ -1,4 +1,8 @@
-# Astro Vault 🌱
+---
+title: Minha Nova Home
+layout: base
+draft: false
+---
 
 A Digital Garden template powered by **Astro** and **Obsidian**.
 Designed to publish your notes as a static website with zero friction.
