@@ -3,6 +3,8 @@ layout: ../layouts/BaseLayout.astro
 title: Minha Nova Home
 ---
 
+## Minha Nova Home
+
 A Digital Garden template powered by **Astro** and **Obsidian**.
 Designed to publish your notes as a static website with zero friction.
 
