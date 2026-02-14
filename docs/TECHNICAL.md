@@ -1,32 +1,66 @@
 # Técnico
 
+## Filosofia: Progressive Disclosure
+
+O Astro Vault adota uma abordagem de **revelação progressiva** da plataforma Astro:
+
+| Nível | O usuário faz | O que aprende |
+|-------|--------------|---------------|
+| 0 | Escreve `.md` em `src/pages/`, dá push | Markdown vira site |
+| 1 | Edita frontmatter, CSS, layout | Estrutura de um site Astro |
+| 2 | Usa Content Collections (`src/content/`) | APIs avançadas do Astro |
+| 3 | Integra React/Vue/Svelte, islands | Poder total do Astro |
+
+**Hoje o projeto opera no Nível 0–1.** A arquitetura foi desenhada para que a transição entre níveis seja natural, nunca forçada. Inspiração filosófica: [Quartz](https://quartz.jzhao.xyz/) (publicação de notas sobre Hugo) — mesma energia, mas sem esconder o framework.
+
 ## Abordagem de Desenvolvimento
 
 Seguiremos uma abordagem incremental para evitar *over-engineering*:
 **Spike -> SDD Simplificado -> (Dev Container) -> BDD/TDD**
 
-### 1. Fase 0: Spike (Prova de Conceito) - [CONCLUÍDO]
+### 1. Fase 0: Spike (Prova de Conceito) — CONCLUÍDA
 
 **Resultado:** Sucesso. A integração técnica foi validada e implementada.
 
-#### Decisões Técnicas (ADR - Architecture Decision Record)
+### 2. Decisões Técnicas (ADR)
 
-1. **Wikilinks:**
-    * **Decisão:** Usar `remark-wiki-link`.
-    * **Configuração:** `pageResolver` customizado para slugify (`Note A` -> `note-a`) e `hrefTemplate` apontando para `/vault/`.
+#### ADR-01: Pages as Content
 
-2. **Imagens (`![[img]]`):**
-    * **Problema:** Obsidian usa caminhos relativos/mágicos; Astro exige caminhos explícitos.
-    * **Solução (Plugin):** Criamos `src/plugins/remark-obsidian-images.js` que transforma `![[img.png]]` em `![img](/vault-images/img.png)`.
-    * **Solução (Sync):** Criamos uma Integração Astro (`src/integrations/sync-assets.js`) que copia recursivamente imagens de `src/content/vault` para `public/vault-images` antes do build.
+* **Decisão:** Usar `src/pages/` em vez de Content Collections.
+* **Motivo:** Simplicidade radical — "arquivo na pasta = página no site". Hierarquia de pastas nativa e URLs previsíveis sem configuração extra.
+* **Trade-off:** Perde-se tipagem e queries da Content Layer API. Aceito para o Nível 0–1; Content Collections entram no Nível 2.
 
-3. **Namespacing de Assets:**
-    * `public/assets/`: Reservado para assets manuais do site (logo, favicon). Versionado no Git.
-    * `public/vault-images/`: Reservado para imagens sincronizadas do Obsidian. **Ignorado no Git** (pois a fonte da verdade é o `src/content/vault`).
+#### ADR-02: Smart Asset Sync
 
-### 2. SDD - Specification Driven Development (Simplificado)
+* **Problema:** Copiar todas as imagens do vault gera lixo e expõe rascunhos.
+* **Solução:** `src/integrations/sync-assets.js` escaneia `.md` buscando referências `![[]]` e `()`. Copia para `public/assets` apenas as imagens citadas. Ignora arquivos começando com `_`.
 
-Evitar a "burocracia de documentação". Focaremos em poucos arquivos vivos em `/docs`:
+#### ADR-03: Frontmatter-Driven Configuration
+
+* **Layouts:** Controlados via `layout: ../layouts/BaseLayout.astro` no frontmatter.
+* **Title:** `title: ...` define o título da página.
+* Essa convenção é a porta de entrada para o usuário entender componentes Astro.
+
+#### ADR-04: Sintaxe Obsidian via Remark Plugins
+
+* `remark-wiki-link` resolve `[[Nota]]` → URL (lowercase, espaços → hyphens).
+* `remark-obsidian-images` resolve `![[imagem.png]]` → `<img src="/assets/imagem.png">`.
+* Ambos são configurados em `astro.config.mjs`.
+
+#### ADR-05: Base Path para GitHub Pages
+
+* **Problema descoberto (Fev/2026):** O deploy em `https://user.github.io/repo-name/` requer que todos os links internos incluam o prefixo `/repo-name/`. Sem isso, navegação, wikilinks, imagens e favicon quebram com 404.
+* **Causa raiz:** `astro.config.mjs` não define `site` nem `base`. Os plugins remark geram URLs absolutas sem o prefixo.
+* **Solução necessária:**
+  1. Configurar `site` e `base` no `astro.config.mjs`.
+  2. O `hrefTemplate` do wikilink precisa incorporar o `base`.
+  3. O `remark-obsidian-images` precisa prefilar URLs com `base`.
+  4. O nav link do `BaseLayout.astro` deve usar `import.meta.env.BASE_URL`.
+* **Consideração de template:** `base` deve ser facilmente alterável — `/` para domínio customizado, `/repo-name` para GitHub Pages de projeto.
+
+### 3. SDD - Specification Driven Development (Simplificado)
+
+Poucos arquivos vivos em `/docs`:
 
 * `PRODUCT.md`: Visão, Personas e User Stories.
 * `TECHNICAL.md`: Arquitetura, Decisões de Design e Stack.
@@ -35,15 +69,16 @@ Evitar a "burocracia de documentação". Focaremos em poucos arquivos vivos em `
 *Na raiz:*
 
 * `README.md`: Guia de início rápido.
+* `.github/copilot-instructions.md`: Instruções para agentes AI (estável).
 
-### 3. Dev Container & Ambiente
+### 4. Dev Container & Ambiente
 
-Definir um ambiente reprodutível (Dev Container) apenas após validar o Spike.
+Definir um ambiente reprodutível (Dev Container) apenas após estabilizar o MVP.
 
-### 4. Qualidade (QA & Testing)
+### 5. Qualidade (QA & Testing)
 
 * **Style Guide (Kitchen Sink):**
-  * Mantemos o arquivo `src/content/vault/StyleGuide.md` (antigo Spike) como uma "Nota Mestra" de teste.
-  * **Objetivo:** Teste de Regressão Visual. Sempre que alterarmos CSS ou Layouts, verificamos essa nota para garantir que imagens, links e formatações complexas continuam funcionando.
-* **BDD:** Testes de aceitação para garantir que o fluxo "Escrever no Obsidian -> Push -> Site Atualizado" funcione.
-* **TDD:** Testes unitários para lógicas complexas.
+  * `src/pages/styleguide.md` é a "Nota Mestra" de teste de regressão visual.
+  * **Objetivo:** Sempre que alterar CSS, layouts ou plugins, verificar que imagens, links e formatações complexas continuam funcionando.
+* **BDD:** Testes de aceitação para garantir que o fluxo "Escrever no Obsidian → Push → Site Atualizado" funcione.
+* **TDD:** Testes unitários para lógicas complexas (plugins remark, sync-assets).
