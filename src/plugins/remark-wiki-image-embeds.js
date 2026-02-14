@@ -1,11 +1,34 @@
 import { visit } from 'unist-util-visit';
 
 /**
+ * Derives a human-readable alt text from a filename.
+ * Strips extension and converts separators (underscores, hyphens) to spaces.
+ *
+ * @example filenameToAlt('test_image.png')  → 'test'
+ * @example filenameToAlt('my-diagram.svg')  → 'my diagram'
+ * @example filenameToAlt('photo.jpg')       → 'photo'
+ *
+ * @param {string} filename
+ * @returns {string}
+ */
+function filenameToAlt(filename) {
+  return filename
+    .replace(/\.[^.]+$/, '')   // remove file extension
+    .replace(/[_-]/g, ' ')     // separators → spaces
+    .trim();
+}
+
+/**
  * Remark plugin: transforms wiki-style image embeds (![[image.png]])
  * into standard markdown image nodes.
  *
  * This handles an open convention used across many editors (Obsidian,
  * Dendron, Foam, etc.) — not specific to any single tool.
+ *
+ * Accessibility: generates clean alt text from filenames (no extension,
+ * humanized separators). Explicit alt via pipe syntax: ![[img.png|My alt]].
+ *
+ * Performance: adds loading="lazy" to all generated images.
  *
  * TODO: Extract into standalone npm package (e.g., remark-wiki-image-embeds)
  * so it becomes a default Astro Vault dependency instead of inline code.
@@ -41,8 +64,13 @@ export default function remarkWikiImageEmbeds(options = {}) {
         children.push({
           type: 'image',
           url: `${base}/assets/${filename}`,
-          alt: alt || filename,
-          title: null
+          alt: alt || filenameToAlt(filename),
+          title: null,
+          data: {
+            hProperties: {
+              loading: 'lazy'
+            }
+          }
         });
 
         lastIndex = start + fullMatch.length;
