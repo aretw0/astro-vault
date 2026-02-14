@@ -55,3 +55,4 @@ npm run clean     # Clear caches (if things get weird)
 * [PRODUCT.md](docs/PRODUCT.md) — Visão, personas, princípios.
 * [TECHNICAL.md](docs/TECHNICAL.md) — Arquitetura, ADRs, stack.
 * [PLANNING.md](docs/PLANNING.md) — Roadmap e tarefas.
+* [LIMITATIONS.md](docs/LIMITATIONS.md) — Trade-offs conscientes e jornada de progressão.

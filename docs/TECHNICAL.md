@@ -13,6 +13,8 @@ O Astro Vault adota uma abordagem de **revelação progressiva** da plataforma A
 
 **Hoje o projeto opera no Nível 0–1.** A arquitetura foi desenhada para que a transição entre níveis seja natural, nunca forçada. Inspiração filosófica: [Quartz](https://quartz.jzhao.xyz/) (publicação de notas sobre Hugo) — mesma energia, mas sem esconder o framework.
 
+**Limitações conscientes:** Cada nível aceita trade-offs em prol de simplicidade. Para mapeamento completo de limitações e jornada de progressão, consulte [`LIMITATIONS.md`](./LIMITATIONS.md).
+
 ## Abordagem de Desenvolvimento
 
 Seguiremos uma abordagem incremental para evitar *over-engineering*:

@@ -5,6 +5,7 @@
 Astro Vault is a progressive Digital Garden: Markdown notes with open syntaxes → Astro static site.
 Works with any markdown editor (VS Code, Obsidian, iA Writer, etc.).
 Read `docs/PRODUCT.md` for vision/personas and `docs/TECHNICAL.md` for architecture decisions (ADRs).
+Understand trade-offs and progression path in `docs/LIMITATIONS.md`.
 
 ## Architecture (stable)
 

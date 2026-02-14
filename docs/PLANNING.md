@@ -4,6 +4,8 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 
 **Premissa:** Progressividade. Cada fase entrega valor completo no nível atual antes de avançar.
 
+**Contexto de limitações:** Para entender os trade-offs conscientes de cada nível de Progressive Disclosure, consulte [`LIMITATIONS.md`](./LIMITATIONS.md).
+
 ## Roadmap
 
 ### Fase 0: Validação Técnica (Spike) — CONCLUÍDA
@@ -38,6 +40,7 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [ ] Tutorial: Como usar seu editor Markdown favorito com Git (compatibilidade com VS Code, Obsidian, iA Writer, etc).
 - [ ] Temas/Layouts com foco em leitura.
 - [ ] Suporte a Callouts/Admonitions.
+- [ ] **Research:** Investigar `getImage()` do Astro para otimização de imagem em plugin remark (tentar resolver no Nível 0-1 sem migrar para MDX). Ver limitação documentada em `LIMITATIONS.md`.
 
 ### Fase 3: Evolução Astro (Progressive Disclosure)
 
