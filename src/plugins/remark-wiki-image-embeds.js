@@ -1,13 +1,19 @@
 import { visit } from 'unist-util-visit';
 
 /**
- * Remark plugin that transforms Obsidian image embeds (![[image.png]])
+ * Remark plugin: transforms wiki-style image embeds (![[image.png]])
  * into standard markdown image nodes.
  *
+ * This handles an open convention used across many editors (Obsidian,
+ * Dendron, Foam, etc.) — not specific to any single tool.
+ *
+ * TODO: Extract into standalone npm package (e.g., remark-wiki-image-embeds)
+ * so it becomes a default Astro Vault dependency instead of inline code.
+ *
  * @param {Object} options
- * @param {string} [options.base=''] - Base path prefix for generated URLs (e.g., '/astro-vault').
+ * @param {string} [options.base=''] - Base path prefix for URLs (e.g., '/astro-vault').
  */
-export default function remarkObsidianImages(options = {}) {
+export default function remarkWikiImageEmbeds(options = {}) {
   const base = options.base || '';
 
   return (tree) => {

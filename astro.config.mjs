@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import wikiLinkPlugin from 'remark-wiki-link';
 import syncAssets from './src/integrations/sync-assets.js';
-import remarkObsidianImages from './src/plugins/remark-obsidian-images.js';
+import remarkWikiImageEmbeds from './src/plugins/remark-wiki-image-embeds.js';
 
 // Base path: '/astro-vault' for GitHub Pages project sites, '/' for custom domains.
 const base = '/astro-vault';
@@ -13,7 +13,7 @@ export default defineConfig({
   integrations: [syncAssets()],
   markdown: {
     remarkPlugins: [
-      [remarkObsidianImages, { base }],
+      [remarkWikiImageEmbeds, { base }],
       [wikiLinkPlugin, {
         pageResolver: (name) => [name.toLowerCase().replace(/ /g, '-')],
         hrefTemplate: (permalink) => `${base}/${permalink}`,
