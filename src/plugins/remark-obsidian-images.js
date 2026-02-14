@@ -1,6 +1,15 @@
 import { visit } from 'unist-util-visit';
 
-export default function remarkObsidianImages() {
+/**
+ * Remark plugin that transforms Obsidian image embeds (![[image.png]])
+ * into standard markdown image nodes.
+ *
+ * @param {Object} options
+ * @param {string} [options.base=''] - Base path prefix for generated URLs (e.g., '/astro-vault').
+ */
+export default function remarkObsidianImages(options = {}) {
+  const base = options.base || '';
+
   return (tree) => {
     visit(tree, 'text', (node, index, parent) => {
       const value = node.value;
@@ -25,7 +34,7 @@ export default function remarkObsidianImages() {
 
         children.push({
           type: 'image',
-          url: `/assets/${filename}`,
+          url: `${base}/assets/${filename}`,
           alt: alt || filename,
           title: null
         });
