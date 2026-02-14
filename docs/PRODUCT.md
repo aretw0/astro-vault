@@ -17,15 +17,18 @@ O projeto nasce da observação de que existem pessoas — desenvolvedores inici
 ## Público-alvo
 
 ### 1. O Desenvolvedor (Eu/Você)
+
 * Perfil do GitHub, Portfólio, Blog técnico.
 * Sabe usar git, mas quer um setup pronto e eficiente.
 * **Progressão natural:** Começa com markdown → customiza layouts → integra frameworks.
 
 ### 2. A Prestadora de Serviço (Ex: Manicure, Artesã)
+
 * Quer presença online além do Instagram.
 * **Necessidade Crítica:** A interface administrativa é o Obsidian.
 * *Ação pendente:* Tutorial "Como configurar Obsidian + Git Plugin" para nunca abrir terminal.
 
 ### 3. O Artista (Ex: Poeta)
+
 * Quer liberdade visual sem ficar preso a layouts rígidos.
 * *Desafio pendente:* Validar se customização via Markdown/Frontmatter é suficiente ou se precisamos de componentes customizados fáceis de usar.
