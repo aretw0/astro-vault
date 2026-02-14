@@ -1,14 +1,14 @@
 # Astro Vault 🌱
 
-A Digital Garden template powered by **Astro** and **Obsidian**.
-Publish your notes as a static website with zero friction — then grow at your own pace.
+A digital garden for your Markdown notes, powered by **Astro**.
+Publish with zero friction — then grow progressively into the full power of web development.
 
 ## 🚀 Features
 
-* **Obsidian Integration:**
-  * ✅ Wikilinks support (`[[Note]]` → `/note`).
-  * ✅ Local Images support (`![[image.png]]` → `/assets/image.png`).
-  * ✅ Smart Asset Sync: only referenced images are copied during build.
+* **Extended Markdown Support:**
+  * ✅ Wikilinks (`[[Note]]` → `/note`) for easy note linking.
+  * ✅ Image embeds (`![[image.png]]` → `/assets/image.png`) for visual content.
+  * ✅ Smart Asset Sync: only referenced images copied during build.
 * **Tech Stack:**
   * **Astro v5** — static site generation.
   * **GitHub Pages** — auto-deploy via Actions.
@@ -28,8 +28,8 @@ npm run clean     # Clear caches (if things get weird)
 
 ## 📝 Workflow
 
-1. Write notes in Obsidian inside `src/pages/`.
-2. Use standard Wikilinks (`[[Note]]`) and image embeds (`![[image.png]]`).
+1. Write Markdown notes in `src/pages/` using your favorite editor (VS Code, Obsidian, iA Writer, etc.).
+2. Use Wikilinks (`[[Note]]`) for linking and image embeds (`![[image.png]]`) for images.
 3. Store images in `src/assets/` (only referenced ones are synced).
 4. Commit and push — GitHub Actions builds and deploys automatically.
 
@@ -44,7 +44,7 @@ npm run clean     # Clear caches (if things get weird)
 │   ├── integrations/   # Custom Astro Integrations (sync-assets)
 │   ├── layouts/        # Page Layouts (BaseLayout.astro)
 │   ├── pages/          # YOUR NOTES GO HERE (become routes)
-│   ├── plugins/        # Remark plugins (wikilinks, obsidian images)
+│   ├── plugins/        # Remark plugins (wikilinks, image embeds)
 │   └── styles/         # Global CSS
 ├── docs/               # Project docs (PRODUCT, TECHNICAL, PLANNING)
 └── astro.config.mjs    # Astro + plugin configuration

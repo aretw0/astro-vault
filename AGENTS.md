@@ -2,20 +2,23 @@
 
 ## Project identity
 
-Astro Vault is a progressive Digital Garden template: Obsidian notes → Astro static site.
+Astro Vault is a progressive Digital Garden: Markdown notes with open syntaxes → Astro static site.
+Works with any markdown editor (VS Code, Obsidian, iA Writer, etc.).
 Read `docs/PRODUCT.md` for vision/personas and `docs/TECHNICAL.md` for architecture decisions (ADRs).
 
 ## Architecture (stable)
 
 - **Pages as Content:** Markdown files in `src/pages/` become routes directly. No Content Collections yet (see ADR-01).
 - **Frontmatter contract:** Every `.md` in `src/pages/` must have:
+
   ```yaml
   layout: ../layouts/BaseLayout.astro
   title: <page title>
   ```
-- **Obsidian syntax** is supported via two remark plugins configured in `astro.config.mjs`:
-  - `remark-wiki-link`: `[[My Note]]` → `/<base>/my-note` (lowercase, spaces → hyphens).
-  - `remark-obsidian-images` (`src/plugins/remark-obsidian-images.js`): `![[image.png]]` → `<img src="<base>/assets/image.png">`.
+
+- **Extended Markdown support** via two remark plugins configured in `astro.config.mjs`:
+  - `remark-wiki-link`: Wikilinks `[[My Note]]` → `/<base>/my-note` (lowercase, spaces → hyphens).
+  - `remark-wiki-image-embeds` (`src/plugins/remark-wiki-image-embeds.js`): Image embeds `![[image.png]]` → `<img src="<base>/assets/image.png">`.
 - **Smart Asset Sync** (`src/integrations/sync-assets.js`): scans all `.md` for image references and copies only those from `src/assets/` to `public/assets/`. Files prefixed with `_` are ignored (private).
 
 ## Key files
@@ -24,9 +27,9 @@ Read `docs/PRODUCT.md` for vision/personas and `docs/TECHNICAL.md` for architect
 | ----------------------------- | --------------------------------------- |
 | Astro config + plugin wiring  | `astro.config.mjs`                      |
 | Asset sync integration        | `src/integrations/sync-assets.js`       |
-| Obsidian image remark plugin  | `src/plugins/remark-obsidian-images.js` |
+| Image embed remark plugin     | `src/plugins/remark-wiki-image-embeds.js` |
 | Base layout (all pages)       | `src/layouts/BaseLayout.astro`          |
-| Global styles (Obsidian dark) | `src/styles/global.css`                 |
+| Global styles (dark theme)    | `src/styles/global.css`                 |
 | Visual regression test page   | `src/pages/styleguide.md`               |
 
 ## Conventions
@@ -38,7 +41,7 @@ Read `docs/PRODUCT.md` for vision/personas and `docs/TECHNICAL.md` for architect
 
 ## Dev commands
 
-```
+```bash
 npm run dev       # local dev server
 npm run build     # static build
 npm run preview   # preview build output

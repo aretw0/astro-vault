@@ -23,7 +23,7 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [x] Setup inicial do Astro (template básico).
 - [x] Configuração do GitHub Actions para deploy no Pages.
 - [x] **Fix: Configurar `site` e `base` em `astro.config.mjs`** para que links funcionem no GitHub Pages (ver ADR-05 em TECHNICAL.md).
-- [x] **Fix: Propagar `base` para wikilink `hrefTemplate` e `remark-obsidian-images`.**
+- [x] **Fix: Propagar `base` para wikilink `hrefTemplate` e `remark-wiki-image-embeds`.**
 - [x] **Fix: Usar `import.meta.env.BASE_URL` no nav do `BaseLayout.astro`.**
 - [x] **Fix: Atualizar conteúdo do `index.md`** — texto ainda referencia `src/content` e estrutura desatualizada.
 - [ ] Verificar regressão visual no `styleguide.md` após fixes de base path.
@@ -35,24 +35,25 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 
 - [ ] GitHub Actions para inicialização do template (retirar arquivos e referências específicas do template, deixando apenas o necessário).
 - [ ] Tutorial: Como configurar para uso do template.
-- [ ] Tutorial: Como configurar Obsidian + Git Plugin (persona prestadora de serviço).
+- [ ] Tutorial: Como usar seu editor Markdown favorito com Git (compatibilidade com VS Code, Obsidian, iA Writer, etc).
 - [ ] Temas/Layouts com foco em leitura.
-- [ ] Suporte a Callouts/Admonitions do Obsidian.
+- [ ] Suporte a Callouts/Admonitions.
 
 ### Fase 3: Evolução Astro (Progressive Disclosure)
 
 *Foco: Abrir caminho para níveis avançados sem forçar migração.*
 
 - [ ] Documentar caminho de migração `src/pages` → Content Collections.
+- [ ] Extrair `remark-wiki-image-embeds` e `sync-assets` como pacotes npm independentes (plugins inline → dependências de config padrão).
 - [ ] Exemplos de componentes customizados para "Artistas".
-- [ ] Suporte a tags do Obsidian.
+- [ ] Suporte a tags em Markdown.
 - [ ] Graph View (opcional, desejável para Digital Gardens).
 
 ## Backlog (sem fase definida)
 
 - **Research:** E-commerce simples via Markdown (persona Prestadora de Serviço).
 - **Feat:** Dev Container para ambiente reprodutível.
-- **Doc:** Rascunho do tutorial de setup do Obsidian.
+- **Doc:** Rascunho do tutorial de setup do editor Markdown.
 
 ## Tarefas Imediatas
 

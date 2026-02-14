@@ -41,11 +41,12 @@ Seguiremos uma abordagem incremental para evitar *over-engineering*:
 * **Title:** `title: ...` define o título da página.
 * Essa convenção é a porta de entrada para o usuário entender componentes Astro.
 
-#### ADR-04: Sintaxe Obsidian via Remark Plugins
+#### ADR-04: Syntaxes Abertas: Wikilinks e Image Embeds
 
-* `remark-wiki-link` resolve `[[Nota]]` → URL (lowercase, espaços → hyphens).
-* `remark-obsidian-images` resolve `![[imagem.png]]` → `<img src="/assets/imagem.png">`.
-* Ambos são configurados em `astro.config.mjs`.
+* Suportamos wikilinks `[[Nota]]` → URL (lowercase, espaços → hyphens) via `remark-wiki-link`.
+* Suportamos image embeds `![[imagem.png]]` → `<img src="/assets/imagem.png">` via remark plugin.
+* Essas são convenções abertas usadas em wikis e markdown editors diversos, não exclusivas do Obsidian.
+* Ambas configuradas em `astro.config.mjs` para máxima compatibilidade.
 
 #### ADR-05: Base Path para GitHub Pages
 
@@ -54,7 +55,7 @@ Seguiremos uma abordagem incremental para evitar *over-engineering*:
 * **Solução necessária:**
   1. Configurar `site` e `base` no `astro.config.mjs`.
   2. O `hrefTemplate` do wikilink precisa incorporar o `base`.
-  3. O `remark-obsidian-images` precisa prefilar URLs com `base`.
+  3. O plugin de image embeds (`remark-wiki-image-embeds`) precisa prefixar URLs com `base`.
   4. O nav link do `BaseLayout.astro` deve usar `import.meta.env.BASE_URL`.
 * **Consideração de template:** `base` deve ser facilmente alterável — `/` para domínio customizado, `/repo-name` para GitHub Pages de projeto.
 
@@ -80,5 +81,5 @@ Definir um ambiente reprodutível (Dev Container) apenas após estabilizar o MVP
 * **Style Guide (Kitchen Sink):**
   * `src/pages/styleguide.md` é a "Nota Mestra" de teste de regressão visual.
   * **Objetivo:** Sempre que alterar CSS, layouts ou plugins, verificar que imagens, links e formatações complexas continuam funcionando.
-* **BDD:** Testes de aceitação para garantir que o fluxo "Escrever no Obsidian → Push → Site Atualizado" funcione.
+* **BDD:** Testes de aceitação para garantir que o fluxo "Escrever Markdown → Push → Site Atualizado" funcione.
 * **TDD:** Testes unitários para lógicas complexas (plugins remark, sync-assets).
