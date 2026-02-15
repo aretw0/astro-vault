@@ -47,8 +47,8 @@ Cada nível do Astro Vault **escolhe simplicidade** em áreas específicas, acei
 
 **Próximos passos:**
 
-- **Nível 1-2:** Investigar `getImage()` no plugin remark (complexo, pode quebrar hot-reload)
-- **Nível 2:** Migrar para `.mdx` + componente `<WikiImage>` que usa `<Image>` internamente
+- **Nível 1 (Concluído):** Pesquisa confirmou que `getImage()` no Remark em `.md` puro é tecnicamente inviável sem hacks frágeis (ADR-XX pendente).
+- **Nível 2:** Migrar para Content Collections (`src/content/`) + schema Zod. Isso permite o uso nativo de `astro:assets` e o componente `<Image>` do Astro, garantindo otimização de imagens baseada na configuração do framework.
 - **Nível 3:** Extrair como `remark-astro-wiki-images` com suporte nativo a assets do Astro
 
 ### 2. Sem validação de tipos no frontmatter
