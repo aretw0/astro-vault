@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/aretw0/astro-vault/compare/v0.1.0...v0.2.0) (2026-02-15)
+
+
+### ✨ Features
+
+* adicionar novos layouts e temas ao planejamento do projeto ([92e3ea0](https://github.com/aretw0/astro-vault/commit/92e3ea050d1612ac0538a605525408c2b29eb3c9))
+* **plugin:** implement semantic callouts with customization and aliases ([9bdb5af](https://github.com/aretw0/astro-vault/commit/9bdb5af3311d13e4029cd7428e7e32d79ca5d9c8))
+* **styles:** implement dynamic callout colors and generic content class ([a5a4ea9](https://github.com/aretw0/astro-vault/commit/a5a4ea9cd2a6c8ea9e39ac2c7d90692fda01c920))
+
+
+### ♻️ Refactoring
+
+* **layout:** add semantic article wrapper with .content class ([933dd3a](https://github.com/aretw0/astro-vault/commit/933dd3a00e086d75633dad44e60395b3cf13a759))
+
+
+### 📚 Documentation
+
+* **content:** update styleguide and syntaxes with callout examples ([88d9964](https://github.com/aretw0/astro-vault/commit/88d996433555ce1f7aef55bf4fe4c4527ce6df68))
+* document ADRs 07-09 and update roadmap limitations ([d260c98](https://github.com/aretw0/astro-vault/commit/d260c9812fd0a356e15bca375e2b3091350426ba))
+* **LIMITATIONS:** atualizar próximos passos sobre otimização de imagens e migração para Content Collections ([8ede560](https://github.com/aretw0/astro-vault/commit/8ede56060ae8f38bc12bd6f8a1b44fedea90e144))
+* **PLANNING:** atualizar status da fase 0.2.0 para CONCLUÍDA e ajustar pesquisa sobre getImage() ([9c7243e](https://github.com/aretw0/astro-vault/commit/9c7243e51ae5f547c26d6635b487499ccba201ab))
+
 ## 0.1.0 (2026-02-15)
 
 
