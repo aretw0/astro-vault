@@ -10,10 +10,13 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 
 **Objetivo:** Comunicar fases por SemVer e tornar a versão do projeto sempre disponível para uso no site e na documentação.
 
-- **Fonte de verdade:** `VERSION`.
-- **Sincronização:** `package.json` deve espelhar o mesmo número de versão.
-- **Dogfood:** Exibir a versão no site (ex.: "Built by Astro Vault v{{VAULT_VERSION}}").
-- **Virada de chave:** Fase 2 inicia em `v1.0.0`.
+- **Fonte de verdade:** `VERSION` (ver ADR-06 em TECHNICAL.md).
+- **Sincronização:** `package.json` espelha o mesmo número de versão.
+- **Dogfood:** ✅ Versão exibida no footer do site via interpolação em `BaseLayout.astro`.
+- **Fases e SemVer:**
+  - `v0.x.y` = Fase 0-1 (MVP em desenvolvimento)
+  - `v1.0.0` = Fase 2 (template usável por terceiros)
+  - `v2.0.0+` = Fase 3 (Progressive Disclosure completa)
 
 ## Roadmap
 
@@ -38,11 +41,11 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [x] **Fix: Usar `import.meta.env.BASE_URL` no nav do `BaseLayout.astro`.**
 - [x] **Fix: Atualizar conteúdo do `index.md`** — texto ainda referencia `src/content` e estrutura desatualizada.
 - [x] Verificar regressão visual no `styleguide.md` após fixes de base path.
-- [ ] Configuração de versionamento e release.
-- [ ] Definir e automatizar a fonte de verdade da versão (`VERSION` + `package.json`).
-- [ ] Exibir versão no site (dogfood de interpolacao de `VAULT_VERSION`).
+- [x] Configuração de versionamento e release (ADR-06: VERSION como fonte de verdade).
+- [x] Definir e automatizar a fonte de verdade da versão (`VERSION` + `package.json`).
+- [x] Exibir versão no site (dogfood de interpolação em `BaseLayout.astro`).
 
-### Fase 0.2.0: Experiência do Usuário (DX & UX)
+### Fase 1.0.0: Experiência do Usuário (DX & UX)
 
 *Foco: Template usável por terceiros.*
 
@@ -53,7 +56,7 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [ ] Suporte a Callouts/Admonitions.
 - [ ] **Research:** Investigar `getImage()` do Astro para otimização de imagem em plugin remark (tentar resolver no Nível 0-1 sem migrar para MDX). Ver limitação documentada em `LIMITATIONS.md`.
 
-### Fase 0.3.0: Evolução Astro (Progressive Disclosure)
+### Fase 2.0.0: Evolução Astro (Progressive Disclosure)
 
 *Foco: Abrir caminho para níveis avançados sem forçar migração.*
 
@@ -74,5 +77,7 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 1. [x] Resolver todos os itens `Fix:` da Fase 0.1.0 (base path).
 2. [x] Validar deploy funcional no GitHub Pages.
 3. [x] Limpar conteúdo desatualizado (index.md, README.md).
-4. [ ] Definir versao fonte de verdade e garantir sincronizacao (`VERSION` + `package.json`).
-5. [ ] Dogfood: interpolar a versao no site (ex.: "Built by Astro Vault v{{VAULT_VERSION}}").
+4. [x] Definir versão fonte de verdade e garantir sincronização (`VERSION` + `package.json`).
+5. [x] Dogfood: interpolar a versão no site ("Built with Astro Vault v{version}").
+6. [ ] Definir versao fonte de verdade e garantir sincronizacao (`VERSION` + `package.json`).
+7. [ ] Dogfood: interpolar a versao no site (ex.: "Built by Astro Vault v{{VAULT_VERSION}}").

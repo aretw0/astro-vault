@@ -61,6 +61,18 @@ Seguiremos uma abordagem incremental para evitar *over-engineering*:
   4. O nav link do `BaseLayout.astro` deve usar `import.meta.env.BASE_URL`.
 * **Consideração de template:** `base` deve ser facilmente alterável — `/` para domínio customizado, `/repo-name` para GitHub Pages de projeto.
 
+#### ADR-06: Versionamento via arquivo VERSION
+
+* **Decisão:** O arquivo `VERSION` na raiz é a fonte de verdade única para o versionamento do projeto.
+* **Motivo:** Simplicidade e visibilidade — um arquivo de texto puro, fácil de editar e automatizar via scripts/CI.
+* **Sincronização:** `package.json` espelha a mesma versão. Ferramentas podem validar consistência (e.g., npm version hook ou script pré-commit).
+* **Interpolação no site:** `BaseLayout.astro` importa `VERSION?raw` (Vite raw import) e exibe no footer: "Built with Astro Vault v{version}".
+* **Dogfooding:** Demonstra ao usuário que dados externos podem ser interpolados em páginas Astro — preparação conceitual para níveis avançados.
+* **SemVer e fases:**
+  - `v0.x.y` = MVP / Fase 1 (em desenvolvimento)
+  - `v1.0.0` = Fase 2 (template usável por terceiros)
+  - `v2.0.0+` = Fase 3 (Progressive Disclosure completa)
+
 ### 3. SDD - Specification Driven Development (Simplificado)
 
 Poucos arquivos vivos em `/docs`:
