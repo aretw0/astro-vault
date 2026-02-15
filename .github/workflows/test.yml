@@ -1,37 +1,37 @@
 name: Test
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
 
 # Evita duplicação: Cancela builds anteriores se um novo commit for enviado na mesma PR/branch
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v6
+              with:
+                  fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'npm'
+            - name: Setup Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 22
+                  cache: "npm"
 
-      - name: Install dependencies
-        run: npm ci
+            - name: Install dependencies
+              run: npm ci
 
-      - name: Run Unit Tests (Vitest)
-        run: npm run test
+            - name: Run Unit Tests (Vitest)
+              run: npm run test
 
-      - name: Build (Astro Check)
-        run: npm run build
+            - name: Build (Astro Check)
+              run: npm run build
