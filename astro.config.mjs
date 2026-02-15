@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import remarkDirective from 'remark-directive';
 import wikiLinkPlugin from 'remark-wiki-link';
 import syncAssets from './src/integrations/sync-assets.js';
 import remarkCallouts from './src/plugins/remark-callouts.js';
@@ -19,6 +20,7 @@ export default defineConfig({
   integrations: [syncAssets()],
   markdown: {
     remarkPlugins: [
+      remarkDirective,
       [remarkCallouts, {
         types: {
           note: { color: '#448aff' },
@@ -33,7 +35,15 @@ export default defineConfig({
         pageResolver: (name) => [name.toLowerCase().replace(/ /g, '-')],
         hrefTemplate: (permalink) => {
           if (permalink.startsWith('#')) return permalink; // Anchor links
-          const path = permalink.replace(/ /g, '-').toLowerCase();
+          
+          // Normalize path: lowercase, replace spaces with hyphens
+          let path = permalink.replace(/ /g, '-').toLowerCase();
+          
+          // Remove trailing /index to avoid 404s
+          // [[folder/index]] → /folder
+          // [[folder/index|alias]] → /folder
+          path = path.replace(/\/index$/, '');
+          
           return base === '/' ? `/${path}` : `${base}/${path}`;
         },
       }]
