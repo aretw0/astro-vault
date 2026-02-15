@@ -1,6 +1,10 @@
+import remarkParse from 'remark-parse';
+import { unified } from 'unified';
 import { visit } from 'unist-util-visit';
 
-const CALLOUT_HEADER_REGEX = /^\[!([a-zA-Z0-9_-]+)\]([+-])?(?:\s+(.*))?$/;
+// Regex patterns for different callout syntaxes
+const OBSIDIAN_HEADER_REGEX = /^\[!([a-zA-Z0-9_-]+)\]([+-])?(?:\s+(.*))?$/;
+const MKDOCS_HEADER_REGEX = /^!!!\s+([a-zA-Z0-9_-]+)(?:\s+"([^"]+)")?(?:\s+(.*))?$/;
 
 function normalizeCalloutType(type) {
   const normalized = String(type || 'note').trim().toLowerCase();
@@ -28,8 +32,11 @@ function defaultTitleForType(type) {
   return label.charAt(0).toUpperCase() + label.slice(1);
 }
 
-function parseCalloutHeader(value) {
-  const match = CALLOUT_HEADER_REGEX.exec(value);
+/**
+ * Parse Obsidian-style callout header from blockquote
+ */
+function parseObsidianHeader(value) {
+  const match = OBSIDIAN_HEADER_REGEX.exec(value);
   if (!match) {
     return null;
   }
@@ -39,6 +46,61 @@ function parseCalloutHeader(value) {
     fold: match[2] || '',
     title: match[3] || ''
   };
+}
+
+/**
+ * Parse MkDocs-style callout header: !!! note "Title" or !!! note
+ */
+function parseMkDocsHeader(value) {
+  const match = MKDOCS_HEADER_REGEX.exec(value);
+  if (!match) {
+    return null;
+  }
+
+  return {
+    typeRaw: match[1],
+    title: match[2] || match[3] || ''
+  };
+}
+
+/**
+ * Creates a normalized callout AST node
+ */
+function createCalloutNode(type, title, children, types) {
+  const normalizedType = normalizeCalloutType(type);
+  const finalTitle = title || defaultTitleForType(normalizedType);
+  const typeConfig = types[normalizedType];
+
+  const titleNode = {
+    type: 'paragraph',
+    data: {
+      hProperties: {
+        className: ['callout-title']
+      }
+    },
+    children: [{ type: 'text', value: finalTitle }]
+  };
+
+  const calloutNode = {
+    type: 'callout',
+    data: {
+      hName: 'aside',
+      hProperties: {
+        className: ['callout', `callout-${normalizedType}`],
+        role: 'note',
+        'aria-label': finalTitle,
+        'data-callout': normalizedType
+      }
+    },
+    children: [titleNode, ...children]
+  };
+
+  // Inject inline CSS custom property if type is configured
+  if (typeConfig?.color) {
+    calloutNode.data.hProperties.style = `--callout-color: ${typeConfig.color}`;
+  }
+
+  return calloutNode;
 }
 
 /**
@@ -87,7 +149,8 @@ export default function remarkCallouts(options = {}) {
     const source = typeof file?.value === 'string' ? file.value : '';
     const lines = source ? source.split(/\r?\n/) : [];
 
-    visit(tree, 'blockquote', (node) => {
+    // Handler for Obsidian-style callouts (blockquote with [!type])
+    visit(tree, 'blockquote', (node, index, parent) => {
       if (!node.children || node.children.length === 0) {
         return;
       }
@@ -108,7 +171,7 @@ export default function remarkCallouts(options = {}) {
       let parsed = null;
       for (const rawLine of rawLines) {
         const cleaned = rawLine.replace(/^\s*>\s?/, '').trim();
-        parsed = parseCalloutHeader(cleaned);
+        parsed = parseObsidianHeader(cleaned);
         if (parsed) {
           break;
         }
@@ -118,51 +181,114 @@ export default function remarkCallouts(options = {}) {
         return;
       }
 
-      const type = normalizeCalloutType(parsed.typeRaw);
-      const title = String(parsed.title).trim() || defaultTitleForType(type);
-      const typeConfig = types[type];
-
-      // Transform blockquote → semantic aside
-      node.data = node.data || {};
-      node.data.hName = 'aside';
-      node.data.hProperties = {
-        className: ['callout', `callout-${type}`],
-        role: 'note',
-        'aria-label': title,
-        'data-callout': type
-      };
-
-      // Inject inline CSS custom property if type is configured
-      if (typeConfig?.color) {
-        node.data.hProperties.style = `--callout-color: ${typeConfig.color}`;
-      }
+      const type = parsed.typeRaw;
+      const title = String(parsed.title).trim();
 
       // Strip the header from the first paragraph, keep remaining content
       const remainingChildren = stripHeaderFromParagraph(firstChild);
-
-      // Build new children: title + remaining content from first paragraph + rest
-      const titleNode = {
-        type: 'paragraph',
-        data: {
-          hProperties: {
-            className: ['callout-title']
-          }
-        },
-        children: [{ type: 'text', value: title }]
-      };
-
       const bodyNodes = node.children.slice(1);
 
+      let children = [];
       if (remainingChildren.length > 0) {
         // Preserve the remaining content as a paragraph
         const contentParagraph = {
           ...firstChild,
           children: remainingChildren
         };
-        node.children = [titleNode, contentParagraph, ...bodyNodes];
+        children = [contentParagraph, ...bodyNodes];
       } else {
-        node.children = [titleNode, ...bodyNodes];
+        children = [...bodyNodes];
       }
+
+      // Replace blockquote with callout node
+      const callout = createCalloutNode(type, title, children, types);
+      Object.assign(node, callout);
+    });
+
+    // Handler for Docusaurus-style callouts (:::type)
+    visit(tree, 'containerDirective', (node, index, parent) => {
+      if (node.name) {
+        const type = node.name;
+        const title = node.attributes?.title || '';
+        const children = node.children || [];
+
+        // Replace containerDirective with callout node
+        const callout = createCalloutNode(type, title, children, types);
+        Object.assign(node, callout);
+      }
+    });
+
+    // Handler for MkDocs-style callouts (!!! type)
+    const nodesToReplace = [];
+    
+    visit(tree, 'paragraph', (node, index, parent) => {
+      if (!node.children || node.children.length === 0 || !parent) {
+        return;
+      }
+
+      const firstChild = node.children[0];
+      if (firstChild.type !== 'text') {
+        return;
+      }
+
+      // Handle potential CRLF line endings from split
+      const firstLine = firstChild.value.split('\n')[0].trimEnd();
+      const parsed = parseMkDocsHeader(firstLine);
+
+      if (!parsed) {
+        return;
+      }
+
+      const type = parsed.typeRaw;
+      const title = parsed.title;
+
+      // MkDocs callouts are self-contained: header + content in same paragraph
+      // Split the paragraph's text into lines
+      const lines = firstChild.value.split('\n');
+      
+      // Lines after the first (header) are the callout content
+      const contentLines = lines.slice(1);
+      
+      // Parse content: remove leading indentation uniformly
+      const children = [];
+      if (contentLines.length > 0) {
+        // Remove common indentation from all lines
+        const nonEmptyLines = contentLines.filter(line => line.trim());
+        if (nonEmptyLines.length > 0) {
+          const minIndent = Math.min(...nonEmptyLines.map(line => {
+            const match = line.match(/^( +)/);
+            return match ? match[1].length : 0;
+          }));
+          
+          // Build dedented content
+          const dedentedContent = contentLines
+            .map(line => {
+              if (!line.trim()) return ''; // Empty line
+              return line.substring(minIndent);
+            })
+            .join('\n')
+            .trim();
+          
+          if (dedentedContent) {
+            // Parse the dedented content as markdown to support nested formatting
+            const tempProcessor = unified().use(remarkParse);
+            const contentAst = tempProcessor.parse(dedentedContent);
+            children.push(...contentAst.children);
+          }
+        }
+      }
+
+      // Schedule replacement - replace only this paragraph node
+      nodesToReplace.push({
+        parent,
+        index,
+        callout: createCalloutNode(type, title, children, types)
+      });
+    });
+
+    // Apply MkDocs replacements (reverse order to maintain indices)
+    nodesToReplace.reverse().forEach(({ parent, index, callout }) => {
+      parent.children.splice(index, 1, callout); // Replace 1 node
     });
   };
 }
