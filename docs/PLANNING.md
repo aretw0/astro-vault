@@ -30,7 +30,7 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [x] Implementar "Smart Asset Sync" (apenas imagens usadas).
 - [x] Arquitetura "Pages as Content" (simplicidade).
 
-### Fase 0.1.0: MVP — EM ANDAMENTO
+### Fase 0.1.0: MVP — CONCLUÍDA
 
 *Foco: Site no ar, funcional, editável por Markdown.*
 
