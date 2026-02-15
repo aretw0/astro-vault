@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/aretw0/astro-vault/compare/v0.2.0...v0.3.0) (2026-02-15)
+
+
+### ✨ Features
+
+* **seo:** implement Open Graph and meta tags support ([6321760](https://github.com/aretw0/astro-vault/commit/6321760c9f6c68c10da29e662a169ef9c6fa02df))
+
+
+### 📚 Documentation
+
+* **planning:** remove immediate tasks section from planning document ([5fb998b](https://github.com/aretw0/astro-vault/commit/5fb998bf0db743e2af44b6f76f535552ecfefa05))
+* **roadmap:** mark phase 0.3.0 as done and defer themes to phase 2 ([81e9e10](https://github.com/aretw0/astro-vault/commit/81e9e10d61f9ab6b834dfa92718858865e453222))
+
 ## [0.2.0](https://github.com/aretw0/astro-vault/compare/v0.1.0...v0.2.0) (2026-02-15)
 
 
