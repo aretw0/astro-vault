@@ -22,3 +22,25 @@ And tries to show an image that doesn't exist:
 
 And tries to show a ignored image:
 ![[_test_image_to_ignore.png]]
+
+## Callouts
+
+> [!note]
+> This is a basic note callout.
+
+> [!tip] Quick win
+> You can add a custom title after the callout type.
+
+> [!warning]
+> This callout highlights a potential problem.
+
+> [!danger]
+> This callout marks a critical issue.
+
+### Custom Types (Fallback Test)
+
+> [!success]
+> This callout uses a custom type not defined in config. It falls back to accent color.
+
+> [!question] Why does this matter?
+> Custom types work seamlessly without breaking the site.

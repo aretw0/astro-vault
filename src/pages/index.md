@@ -13,3 +13,4 @@ Write your notes in `src/pages/`, push to GitHub, and your site updates automati
 
 * [[styleguide]]
 * [[linked-note]]
+* [[syntaxes]]
