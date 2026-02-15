@@ -50,13 +50,16 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [x] Definir e automatizar a fonte de verdade da versão (`VERSION` + `package.json`).
 - [x] Exibir versão no site (dogfood de interpolação em `BaseLayout.astro`).
 
-### Fase 0.2.0: Sintaxes e Convenções
+### Fase 0.2.0: Sintaxes e Convenções — EM PROGRESSO
 
 *Foco: Expandir suporte a sintaxes Markdown abertas e melhorar acessibilidade de conteúdo.*
 
-- [ ] Suporte a Callouts/Admonitions (sintaxe compatível com Obsidian, Quartz, etc.).
+- [x] Suporte a Callouts/Admonitions (sintaxe compatível com Obsidian, Quartz, etc.).
+- [x] **Setup de Testes:** Introdução do Vitest para validar plugins Remark de forma determinística, contornando limitações de cache do Astro HMR.
+- [x] **Visual: Diferencial de Cores:** Implementar CSS específico para tipos de callouts (`note`, `tip`, `warning`, `danger`).
+- [x] **Customização de Callouts:** Sistema de configuração de tipos via `astro.config.mjs` (ADR-09) — tipos ilimitados com inline CSS custom properties.
 - [ ] **Research:** Investigar `getImage()` do Astro para otimização de imagem em plugin remark (tentar resolver no Nível 0-1 sem migrar para MDX). Ver limitação documentada em `LIMITATIONS.md`.
-- [ ] Documentar sintaxes suportadas em página dedicada (wikilinks, image embeds, callouts).
+- [x] Documentar sintaxes suportadas em página dedicada (wikilinks, image embeds, callouts) em `src/pages/syntaxes.md`.
 
 ### Fase 0.3.0: Visual e Experiência de Leitura
 

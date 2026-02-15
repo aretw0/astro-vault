@@ -73,6 +73,60 @@ Cada nível do Astro Vault **escolhe simplicidade** em áreas específicas, acei
 
 ---
 
+## Caveats Técnicos (Perigos Ocultos)
+
+Estes são comportamentos que podem surpreender o usuário caso o vault cresça.
+
+### 1. Colisão de Nomes em Assets
+
+**O que acontece:** A integração `sync-assets.js` achata a estrutura de pastas ao copiar para `public/assets/`.
+**Risco:** Se você tiver `viagens/paris.jpg` e `trabalho/paris.jpg`, apenas uma chegará ao site final.
+**Mitigação:** Use nomes únicos para arquivos de mídia ou aceite este trade-off em prol de URLs de assets curtas no Nível 0-1.
+
+### 2. HMR e Plugins Remark
+
+**O que acontece:** Alterações em `src/plugins/*.js` não são refletidas instantaneamente no browser pelo Astro.
+**Risco:** Frustração durante o desenvolvimento de novas sintaxes.
+**Mitigação:** Execute `npm run test` para validar lógica de plugin de forma isolada e reinicie o servidor Astro (`npm run dev`) apenas para a verificação final.
+
+### 3. Callouts: Customização Limitada a Cores
+
+**O que funciona (Nível 0-1):**
+
+- ✅ Tipos ilimitados via sintaxe `> [!custom-type]`
+- ✅ Configuração de cores por tipo em `astro.config.mjs`
+- ✅ Fallback automático para cor accent em tipos desconhecidos
+- ✅ Ícones via emoji/Unicode no título customizado
+
+**O que NÃO funciona:**
+
+- ❌ Ícones SVG inline (requer MDX)
+- ❌ Validação de tipos permitidos (requer Zod Schema)
+- ❌ Callouts colapsáveis/interativos (requer client-side JS)
+- ❌ Backgrounds complexos com gradientes (tecnicamente possível, mas over-engineering)
+
+**Exemplo de customização atual:**
+
+```js
+// astro.config.mjs
+remarkPlugins: [
+  [remarkCallouts, {
+    types: {
+      success: { color: '#00e676' },
+      question: { color: '#448aff' },
+      quote: { color: '#9e9e9e' }
+    }
+  }]
+]
+```
+
+**Próximos passos:**
+
+- **Nível 2 (Content Collections):** Schema Zod valida tipos permitidos. Componente `<Callout>` customizado aceita ícones SVG e slots.
+- **Nível 3 (Islands):** Callouts interativos via React/Vue (ex: `client:load` para collapse).
+
+---
+
 ## Nível 1: Componentes Astro + CSS Customizado
 
 **O que você ganha:**

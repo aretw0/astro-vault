@@ -17,9 +17,10 @@ Understand trade-offs and progression path in `docs/LIMITATIONS.md`.
   title: <page title>
   ```
 
-- **Extended Markdown support** via two remark plugins configured in `astro.config.mjs`:
+- **Extended Markdown support** via three remark plugins configured in `astro.config.mjs`:
   - `remark-wiki-link`: Wikilinks `[[My Note]]` → `/<base>/my-note` (lowercase, spaces → hyphens).
   - `remark-wiki-image-embeds` (`src/plugins/remark-wiki-image-embeds.js`): Image embeds `![[image.png]]` → `<img src="<base>/assets/image.png">`.
+  - `remark-callouts` (`src/plugins/remark-callouts.js`): Semantic callouts `> [!note]` → `<aside class="callout callout-note">`. **Customizable** via `options.types` in config (see ADR-09).
 - **Smart Asset Sync** (`src/integrations/sync-assets.js`): scans all `.md` for image references and copies only those from `src/assets/` to `public/assets/`. Files prefixed with `_` are ignored (private).
 
 ## Key files
@@ -29,9 +30,11 @@ Understand trade-offs and progression path in `docs/LIMITATIONS.md`.
 | Astro config + plugin wiring  | `astro.config.mjs`                      |
 | Asset sync integration        | `src/integrations/sync-assets.js`       |
 | Image embed remark plugin     | `src/plugins/remark-wiki-image-embeds.js` |
+| Callouts remark plugin        | `src/plugins/remark-callouts.js`        |
 | Base layout (all pages)       | `src/layouts/BaseLayout.astro`          |
 | Global styles (dark theme)    | `src/styles/global.css`                 |
 | Visual regression test page   | `src/pages/styleguide.md`               |
+| Unit tests (Plugins)          | `tests/remark-callouts.test.mjs`        |
 
 ## Conventions
 
@@ -46,6 +49,7 @@ Understand trade-offs and progression path in `docs/LIMITATIONS.md`.
 npm run dev       # local dev server
 npm run build     # static build
 npm run preview   # preview build output
+npm run test      # run unit tests for plugins (vitest)
 npm run clean     # remove .astro, dist, public/assets
 ```
 

@@ -74,6 +74,34 @@ Seguiremos uma abordagem incremental para evitar *over-engineering*:
   * `v1.0.0` = Fase 2 (template usável por terceiros)
   * `v2.0.0+` = Fase 3 (Progressive Disclosure completa)
 
+#### ADR-07: Callouts com sintaxe Obsidian e HTML semântico
+
+* **Decisão:** Suportar callouts via sintaxe `> [!note]` (e variantes) e renderizar como `<aside>` com classes e rótulo acessível.
+* **Motivo:** Sintaxe amplamente adotada (Obsidian, Quartz, etc.) e HTML semântico correto para conteúdo complementar.
+* **Resultado:** Callouts têm classes `callout` e `callout-{tipo}`, além de `aria-label` e `data-callout`.
+* **Trade-off:** O título passa a ser gerado/normalizado pelo plugin; formatações complexas no título não são suportadas no Nível 0-1.
+
+#### ADR-08: Testes Unitários para Plugins Remark
+
+* **Problema:** O Astro não recarrega plugins Remark via HMR durante o desenvolvimento. Além disso, erros na árvore AST são difíceis de depurar via browser.
+* **Decisão:** Usar `vitest` para testar as transformações da árvore AST de forma isolada.
+* **Benefício:** Ciclo de feedback de <500ms. Garante que mudanças no código do plugin não quebrem a renderização sem precisar reiniciar o servidor Astro.
+* **Localização:** Os testes residem em `tests/*.test.mjs`.
+
+#### ADR-09: Customização de Callouts via Config (Abordagem B)
+
+* **Problema:** Callouts hardcoded no CSS limitam a extensibilidade. Usuários que inventam tipos customizados (`> [!success]`) veem apenas a borda genérica roxa.
+* **Decisão:** O plugin `remark-callouts` aceita um mapa `options.types` configurável via `astro.config.mjs`. Para cada tipo mapeado, o plugin injeta `style="--callout-color: X"` no HTML. O CSS usa `var(--callout-color, var(--accent))` como fallback.
+* **Benefício:** Tipos ilimitados sem regras CSS por tipo. Customização em um único arquivo (`astro.config.mjs`). Zero breaking changes — tipos não mapeados herdam a cor accent.
+* **Trade-offs aceitos (Nível 0-1):**
+  * Apenas cor é suportada via inline style. Ícones customizados requerem emoji/Unicode ou MDX (Nível 2).
+  * Backgrounds customizados são tecnicamente possíveis mas aumentam complexidade visual.
+  * Sem validação de tipos — erros de digitação simplesmente caem no fallback (validação Zod só no Nível 2 com Content Collections).
+* **Jornada de progressão:**
+  * **Nível 0-1 (atual):** Config no `astro.config.mjs` com mapa de cores.
+  * **Nível 2 (futuro):** Schema Zod em Content Collections valida tipos permitidos. Callouts renderizados via componente Astro customizado que aceita ícones SVG, layouts complexos, e slots.
+  * **Nível 3 (islands):** Callouts colapsáveis/interativos via framework (React/Vue).
+
 ### 3. SDD - Specification Driven Development (Simplificado)
 
 Poucos arquivos vivos em `/docs`:
