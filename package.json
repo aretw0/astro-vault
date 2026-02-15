@@ -12,6 +12,7 @@
     "clean": "rimraf .astro node_modules/.vite dist public/assets",
     "release": "standard-version --infile CHANGELOG.md",
     "release:dry": "standard-version --infile CHANGELOG.md --dry-run",
+    "release:patch": "standard-version --infile CHANGELOG.md --release-as patch",
     "release:minor": "standard-version --infile CHANGELOG.md --release-as minor",
     "release:major": "standard-version --infile CHANGELOG.md --release-as major"
   },
