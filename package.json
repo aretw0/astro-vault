@@ -28,6 +28,7 @@
     "prettier": "3.7.3",
     "prettier-plugin-astro": "0.14.1",
     "rehype-stringify": "^10.0.1",
+    "remark": "^15.0.1",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "rimraf": "^6.1.2",
