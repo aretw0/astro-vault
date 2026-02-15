@@ -14,9 +14,12 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - **Sincronização:** `package.json` espelha o mesmo número de versão.
 - **Dogfood:** ✅ Versão exibida no footer do site via interpolação em `BaseLayout.astro`.
 - **Fases e SemVer:**
-  - `v0.x.y` = Fase 0-1 (MVP em desenvolvimento)
-  - `v1.0.0` = Fase 2 (template usável por terceiros)
-  - `v2.0.0+` = Fase 3 (Progressive Disclosure completa)
+  - `v0.1.0` = MVP (site funcional, base path, versionamento) — ✅ CONCLUÍDA
+  - `v0.2.0` = Sintaxes e Convenções (callouts, getImage research)
+  - `v0.3.0` = Visual e Leitura (temas, SEO, meta tags)
+  - `v0.4.0` = Documentação e Onboarding (tutoriais, FAQ)
+  - `v1.0.0` = Template Público (inicialização automática, release)
+  - `v2.0.0+` = Progressive Disclosure avançado (Content Collections, frameworks, islands)
 
 ## Roadmap
 
@@ -45,16 +48,40 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [x] Definir e automatizar a fonte de verdade da versão (`VERSION` + `package.json`).
 - [x] Exibir versão no site (dogfood de interpolação em `BaseLayout.astro`).
 
-### Fase 1.0.0: Experiência do Usuário (DX & UX)
+### Fase 0.2.0: Sintaxes e Convenções
 
-*Foco: Template usável por terceiros.*
+*Foco: Expandir suporte a sintaxes Markdown abertas e melhorar acessibilidade de conteúdo.*
+
+- [ ] Suporte a Callouts/Admonitions (sintaxe compatível com Obsidian, Quartz, etc.).
+- [ ] **Research:** Investigar `getImage()` do Astro para otimização de imagem em plugin remark (tentar resolver no Nível 0-1 sem migrar para MDX). Ver limitação documentada em `LIMITATIONS.md`.
+- [ ] Documentar sintaxes suportadas em página dedicada (wikilinks, image embeds, callouts).
+
+### Fase 0.3.0: Visual e Experiência de Leitura
+
+*Foco: Melhorar a experiência visual do site.*
+
+- [ ] Temas/Layouts com foco em leitura (tipografia, espaçamento, dark mode refinado).
+- [ ] Quebra de linha e formatação de código melhoradas.
+- [ ] Meta tags para SEO básico.
+- [ ] Open Graph tags para compartilhamento.
+
+### Fase 0.4.0: Documentação e Onboarding
+
+*Foco: Preparar usuários para usar o template.*
+
+- [ ] Tutorial: Como usar seu editor Markdown favorito com Git (compatibilidade com VS Code, Obsidian, iA Writer, etc).
+- [ ] Tutorial: Como configurar para uso do template.
+- [ ] Documentar convenções de nomes de arquivos e estrutura de pastas.
+- [ ] FAQ sobre limitações e progressão de níveis.
+
+### Fase 1.0.0: Template Público
+
+*Foco: Tornar o template usável por terceiros com automação de inicialização.*
 
 - [ ] GitHub Actions para inicialização do template (retirar arquivos e referências específicas do template, deixando apenas o necessário).
-- [ ] Tutorial: Como configurar para uso do template.
-- [ ] Tutorial: Como usar seu editor Markdown favorito com Git (compatibilidade com VS Code, Obsidian, iA Writer, etc).
-- [ ] Temas/Layouts com foco em leitura.
-- [ ] Suporte a Callouts/Admonitions.
-- [ ] **Research:** Investigar `getImage()` do Astro para otimização de imagem em plugin remark (tentar resolver no Nível 0-1 sem migrar para MDX). Ver limitação documentada em `LIMITATIONS.md`.
+- [ ] Validação final de todos os fluxos (clone → edit → push → deploy).
+- [ ] Release notes e changelog estruturado.
+- [ ] Anúncio público do template.
 
 ### Fase 2.0.0: Evolução Astro (Progressive Disclosure)
 
@@ -79,5 +106,4 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 3. [x] Limpar conteúdo desatualizado (index.md, README.md).
 4. [x] Definir versão fonte de verdade e garantir sincronização (`VERSION` + `package.json`).
 5. [x] Dogfood: interpolar a versão no site ("Built with Astro Vault v{version}").
-6. [ ] Definir versao fonte de verdade e garantir sincronizacao (`VERSION` + `package.json`).
-7. [ ] Dogfood: interpolar a versao no site (ex.: "Built by Astro Vault v{{VAULT_VERSION}}").
+6. [ ] Definir primeiro item da Fase 0.2.0 para iniciar.
