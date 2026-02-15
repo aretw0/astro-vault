@@ -17,7 +17,7 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - **Dogfood:** ✅ Versão exibida no footer do site via interpolação em `BaseLayout.astro`.
 - **Fases e SemVer:**
   - `v0.1.0` = MVP (site funcional, base path, versionamento) — ✅ CONCLUÍDA
-  - `v0.2.0` = Sintaxes e Convenções (callouts, getImage research)
+  - `v0.2.0` = Sintaxes e Convenções (callouts, getImage research) — ✅ CONCLUÍDA
   - `v0.3.0` = Visual e Leitura (temas, SEO, meta tags)
   - `v0.4.0` = Documentação e Onboarding (tutoriais, FAQ)
   - `v1.0.0` = Template Público (inicialização automática, release)
@@ -50,7 +50,7 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [x] Definir e automatizar a fonte de verdade da versão (`VERSION` + `package.json`).
 - [x] Exibir versão no site (dogfood de interpolação em `BaseLayout.astro`).
 
-### Fase 0.2.0: Sintaxes e Convenções — EM PROGRESSO
+### Fase 0.2.0: Sintaxes e Convenções — CONCLUÍDA
 
 *Foco: Expandir suporte a sintaxes Markdown abertas e melhorar acessibilidade de conteúdo.*
 
@@ -58,7 +58,7 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [x] **Setup de Testes:** Introdução do Vitest para validar plugins Remark de forma determinística, contornando limitações de cache do Astro HMR.
 - [x] **Visual: Diferencial de Cores:** Implementar CSS específico para tipos de callouts (`note`, `tip`, `warning`, `danger`).
 - [x] **Customização de Callouts:** Sistema de configuração de tipos via `astro.config.mjs` (ADR-09) — tipos ilimitados com inline CSS custom properties.
-- [ ] **Research:** Investigar `getImage()` do Astro para otimização de imagem em plugin remark (tentar resolver no Nível 0-1 sem migrar para MDX). Ver limitação documentada em `LIMITATIONS.md`.
+- [x] **Research:** Investigar `getImage()` do Astro para otimização de imagem em plugin remark. **Veredito:** Inviável no Nível 0-1 (Pages as Content). Implementação real movida para Nível 2 (Content Collections).
 - [x] Documentar sintaxes suportadas em página dedicada (wikilinks, image embeds, callouts) em `src/pages/syntaxes.md`.
 
 ### Fase 0.3.0: Visual e Experiência de Leitura
