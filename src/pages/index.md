@@ -4,14 +4,18 @@ title: Astro Vault
 description: Seu Digital Garden progressivo. Notas em Markdown transformadas em um site Astro veloz e minimalista.
 ---
 
-## 🌱 Welcome
+# 🌱 Astro Vault
 
-This is **Astro Vault** — a Digital Garden powered by Astro and Obsidian.
+Seu Digital Garden progressivo: escreva em Markdown, publique com um push, cresca no ritmo certo.
 
-Write your notes in `src/pages/`, push to GitHub, and your site updates automatically.
+## Comece por aqui
 
-## Notes
+- [[onboarding|Onboarding]]
+- [[onboarding/editor|Editor Markdown + Git (sem terminal)]]
+- [[onboarding/template|Configurar o template]]
 
-* [[styleguide]]
-* [[linked-note]]
-* [[syntaxes]]
+## Notas do projeto
+
+- [[styleguide]]
+- [[linked-note]]
+- [[syntaxes]]

@@ -41,7 +41,8 @@ Understand trade-offs and progression path in `docs/LIMITATIONS.md`.
 - Notes live in `src/pages/`; folder hierarchy = URL hierarchy.
 - Images live in `src/assets/`; `public/assets/` is git-ignored and auto-generated.
 - Files/images prefixed with `_` are excluded from build (e.g., `_ignored-note.md`, `_draft.png`).
-- The `base` path in `astro.config.mjs` must match the deploy target (e.g., `/astro-vault` for GitHub Pages project sites, `/` for custom domains). Wikilink and image plugins must incorporate this base — see ADR-05 in `docs/TECHNICAL.md`.
+- **Internal navigation:** Use wikilinks `[[path/to/page|Link text]]` instead of Markdown relative links. Astro does not rewrite relative links in subfolders, causing them to resolve incorrectly (see ADR-11 and LIMITATIONS.md Caveat 4).
+- The `base` path in `astro.config.mjs` is conditional: `/` in development (for DX) and `/repo-name` in production (for GitHub Pages). Users must update the production value to match their repository name. Wikilink and image plugins automatically incorporate this base — see ADR-05 and ADR-10 in `docs/TECHNICAL.md`.
 
 ## Dev commands
 

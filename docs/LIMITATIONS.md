@@ -125,6 +125,54 @@ remarkPlugins: [
 - **Nível 2 (Content Collections):** Schema Zod valida tipos permitidos. Componente `<Callout>` customizado aceita ícones SVG e slots.
 - **Nível 3 (Islands):** Callouts interativos via React/Vue (ex: `client:load` para collapse).
 
+### 4. Links Markdown Relativos com `./` em Subpastas Não Funcionam
+
+**O que acontece:** Links Markdown que usam `./` para referenciar arquivos no mesmo nível dentro de subpastas de `src/pages/` resolvem para o caminho errado.
+
+**Exemplo do problema:**
+
+```markdown
+<!-- Em src/pages/onboarding/index.md -->
+[Editor](./editor)  <!-- Esperado: /onboarding/editor -->
+                    <!-- Resultado: /editor (root) ❌ -->
+```
+
+**Por quê:** O Astro não reescreve links Markdown automaticamente. O browser interpreta `./` baseado na URL atual, e `/onboarding` (sem trailing slash) é tratado como arquivo, não como pasta.
+
+**O que FUNCIONA:**
+
+```markdown
+<!-- Links que sobem nível com ../ funcionam corretamente -->
+[FAQ](../onboarding/faq)  ✅
+
+<!-- Wikilinks funcionam em qualquer situação -->
+[[onboarding/editor|Editor]]  ✅
+```
+
+**Solução recomendada no Nível 0-1:** Use **wikilinks** para navegação interna, que funcionam consistentemente:
+
+```markdown
+[[onboarding/editor|Editor Markdown + Git]]
+```
+
+**Benefícios dos wikilinks:**
+
+- ✅ Funcionam em qualquer profundidade de pasta
+- ✅ Respeitam o base path automaticamente (dev e prod)
+- ✅ Suportam alias para textos humanizados: `[[pasta/arquivo|Texto]]`
+- ✅ Convenção aberta usada em múltiplos editores (Obsidian, Foam, Dendron, etc.)
+
+**Alternativa:** Links com `../` funcionam, mas exigem conhecimento da estrutura de pastas:
+
+```markdown
+[FAQ](../onboarding/faq)  <!-- Funciona, mas verboso -->
+```
+
+**Próximos passos:**
+
+- **Nível 2:** Com MDX, é possível criar um componente `<Link>` que reescreve caminhos automaticamente.
+- **Nível 3:** Plugin remark customizado para reescrever links Markdown relativos (se necessário para compatibilidade com ferramentas externas).
+
 ---
 
 ## Nível 1: Componentes Astro + CSS Customizado

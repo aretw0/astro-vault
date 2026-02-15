@@ -1,6 +1,6 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
 import versionRaw from "../../VERSION?raw";
+import BaseHead from "../components/BaseHead.astro";
 
 interface Props {
   frontmatter: {
@@ -18,10 +18,10 @@ const version = versionRaw.trim();
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead 
-      title={frontmatter.title} 
-      description={frontmatter.description} 
-      image={frontmatter.image} 
+    <BaseHead
+      title={frontmatter.title}
+      description={frontmatter.description}
+      image={frontmatter.image}
     />
   </head>
   <body>
@@ -33,7 +33,7 @@ const version = versionRaw.trim();
         <a
           href={base}
           style="font-weight: bold; font-size: 1.2rem; color: var(--text-normal);"
-          >🌱 Astro Vault</a
+          >Início</a
         >
       </nav>
     </header>
@@ -48,7 +48,7 @@ const version = versionRaw.trim();
       class="container"
       style="margin-top: 4rem; padding-top: 2rem; padding-bottom: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.9rem;"
     >
-      <p>Built with Astro Vault v{version}</p>
+      <p>Built with Astro Vault v{version} 🌱</p>
     </footer>
   </body>
 </html>

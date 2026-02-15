@@ -60,3 +60,7 @@ npm run clean     # Clear caches (if things get weird)
 * [TECHNICAL.md](docs/TECHNICAL.md) — Arquitetura, ADRs, stack.
 * [PLANNING.md](docs/PLANNING.md) — Roadmap e tarefas.
 * [LIMITATIONS.md](docs/LIMITATIONS.md) — Trade-offs conscientes e jornada de progressão.
+* [onboarding-editor.md](docs/onboarding-editor.md) — Editor Markdown + Git (sem terminal).
+* [onboarding-template.md](docs/onboarding-template.md) — Configuração do template.
+* [conventions.md](docs/conventions.md) — Convenções de nomes e estrutura.
+* [FAQ.md](docs/FAQ.md) — Perguntas frequentes e limitações.
