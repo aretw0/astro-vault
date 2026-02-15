@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/aretw0/astro-vault/compare/v0.4.0...v0.4.1) (2026-02-15)
+
+
+### ♻️ Refactoring
+
+* rename styleguide to kitchen-sink and update site entry points ([bbe182c](https://github.com/aretw0/astro-vault/commit/bbe182c28cfb800328e5f7db67b52875fda417eb))
+
+
+### ✨ Features
+
+* **config:** normalize wikilinks by removing /index suffix automatically ([d2a2ca0](https://github.com/aretw0/astro-vault/commit/d2a2ca073bc75fad70cebc3fd609be973f748c38))
+* **markdown:** add multi-syntax support for callouts (Obsidian, Docusaurus, MkDocs) ([9a35392](https://github.com/aretw0/astro-vault/commit/9a353928ea0f5da8519408d821fc66ce8f8a067c))
+* **planning:** adicionar fase 0.4.1 para ajustes no suporte a callouts ([18ee562](https://github.com/aretw0/astro-vault/commit/18ee5624983152514e32170df533b24d06bebedd))
+
+
+### 📚 Documentation
+
+* **cleanup:** remove redundant onboarding markdown files from project docs ([cfee599](https://github.com/aretw0/astro-vault/commit/cfee5997dbb45c5cd7d68346c8829af71e0e5c18))
+* create feature reference architecture in /docs and update syntaxes ([0b4782c](https://github.com/aretw0/astro-vault/commit/0b4782cc2a75acb2e32868c5567edfde117e8963))
+* rename onboarding to guide and update getting started content ([e43e464](https://github.com/aretw0/astro-vault/commit/e43e4647fdf636968256b616b9271a3d6d5d960e))
+* update project architecture, roadmap, and technical documentation ([cb9e5c6](https://github.com/aretw0/astro-vault/commit/cb9e5c68329d82f379da4beb924f47699211e6a1))
+
+
+### 🔧 Chores
+
+* update package-lock.json for astro v5.17.2 and new dependencies ([9790060](https://github.com/aretw0/astro-vault/commit/979006049727a8a5e9370b7843708b8a75f174ad))
+
 ## [0.4.0](https://github.com/aretw0/astro-vault/compare/v0.3.1...v0.4.0) (2026-02-15)
 
 
