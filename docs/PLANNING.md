@@ -81,6 +81,10 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [x] Publicar os guias também como páginas do site (para leitura online).
 - [x] Estruturar conteúdo pensando em futura internacionalização (PT-BR primeiro).
 
+### Fase 0.4.1: Ajustes Callouts
+
+- [ ] Revisar o suporte a callouts para permitir Docusaurus-style e MkDocs-style admonitions.
+
 ### Fase 1.0.0: Template Público
 
 *Foco: Tornar o template usável por terceiros com automação de inicialização.*
