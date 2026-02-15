@@ -7,6 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "clean": "rimraf .astro node_modules/.vite dist public/assets",
     "release": "standard-version --infile CHANGELOG.md",
     "release:dry": "standard-version --infile CHANGELOG.md --dry-run",
@@ -24,7 +26,12 @@
   "devDependencies": {
     "prettier": "3.7.3",
     "prettier-plugin-astro": "0.14.1",
+    "rehype-stringify": "^10.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
     "rimraf": "^6.1.2",
-    "standard-version": "^9.5.0"
+    "standard-version": "^9.5.0",
+    "unified": "^11.0.5",
+    "vitest": "^4.0.18"
   }
 }
