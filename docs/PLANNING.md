@@ -61,31 +61,14 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [x] **Research:** Investigar `getImage()` do Astro para otimização de imagem em plugin remark. **Veredito:** Inviável no Nível 0-1 (Pages as Content). Implementação real movida para Nível 2 (Content Collections).
 - [x] Documentar sintaxes suportadas em página dedicada (wikilinks, image embeds, callouts) em `src/pages/syntaxes.md`.
 
-### Fase 0.3.0: Visual e Experiência de Leitura
+### Fase 0.3.0: Visual e Experiência de Leitura — CONCLUÍDA
 
 *Foco: Melhorar a experiência visual do site.*
 
-- [ ] Temas/Layouts com foco em leitura (tipografia, espaçamento, dark mode refinado).
-  - [ ] Layout de blog (opcional, desejável para Digital Gardens).
-  - [ ] Layout de portfólio (opcional, desejável para Artistas).
-  - [ ] Verificar como separar estilos globais de temas específicos (ex: blog) para não poluir o CSS base.
-  - [ ] Verificar impacto de temas mais complexos na simplicidade do template (ex: blog com sidebar vs layout mais simples).
-  - [ ] Dark mode: avaliar se o toggle deve ser global ou por tema (ex: blog pode ter dark mode, mas portfólio não).
-  - [ ] Verificar necessidade de configuração adicional para temas (ex: frontmatter para escolher tema por página).
-  - [ ] Garantir que temas não quebrem a simplicidade do setup (ex: tema deve ser opcional e fácil de aplicar).
-  - [ ] Documentar como usar temas e criar novos temas (ex: criar um tema customizado para portfólio).
-  - [ ] Testar temas com diferentes tipos de conteúdo (texto, imagens, callouts) para garantir consistência visual.
-  - [ ] Verificar performance dos temas (ex: evitar temas com muitos assets ou scripts que possam impactar o tempo de carregamento).
-  - [ ] Considerar acessibilidade nos temas (contraste, legibilidade, navegação por teclado).
-  - [ ] Verificar compatibilidade dos temas com diferentes navegadores e dispositivos.
-  - [ ] Criar um tema base minimalista que possa ser customizado facilmente (ex: tema com variáveis CSS para cores e fontes).
-  - [ ] Avaliar se os temas devem ser parte do template ou se devem ser pacotes separados (ex: `astro-vault-theme-blog`).
-  - [ ] Documentar processo de criação de temas para incentivar contribuições da comunidade.
-  - [ ] Criar exemplos de temas para diferentes casos de uso (blog, portfólio, digital garden).
-  - [ ] Verificar se os temas podem ser aplicados globalmente ou por página (ex: frontmatter para escolher tema).
-- [ ] Quebra de linha e formatação de código melhoradas.
-- [ ] Meta tags para SEO básico.
-- [ ] Open Graph tags para compartilhamento.
+- [x] Refinar tipografia e espaçamento para melhor legibilidade (foco em leitura).
+- [x] Melhorar quebra de linha e formatação de código.
+- [x] Meta tags para SEO básico.
+- [x] Open Graph tags para compartilhamento.
 
 ### Fase 0.4.0: Documentação e Onboarding
 
@@ -110,6 +93,8 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 
 *Foco: Abrir caminho para níveis avançados sem forçar migração.*
 
+- [ ] **Temas/Layouts específicos** (Blog, Portfólio) — incluindo Dark Mode Toggle granular.
+- [ ] Implementar otimização nativa de imagens via `astro:assets` integrado a Content Collections (Zod `image()` schema).
 - [ ] Documentar caminho de migração `src/pages` → Content Collections.
 - [ ] Extrair `remark-wiki-image-embeds` e `sync-assets` como pacotes npm independentes (plugins inline → dependências de config padrão).
 - [ ] Exemplos de componentes customizados para "Artistas".
