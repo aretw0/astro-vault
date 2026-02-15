@@ -29,10 +29,11 @@ Como o Astro utiliza Hot Module Replacement (HMR) que nem sempre recarrega plugi
 
 **Foco:** Garantir que o CSS e o Layout não quebram o conteúdo existente.
 
-* **Ferramenta:** Página `src/pages/styleguide.md` (Kitchen Sink).
+* **Ferramenta:** Página `src/pages/kitchen-sink.md` (Kitchen Sink — exemplos concisos de todas as features).
 * **O que testamos:**
-  * Essa nota mestra contém todos os elementos suportados (callouts, imagens, links, código).
-  * Antes de qualquer release, o desenvolvedor deve acessar `/styleguide` e verificar se tudo renderiza conforme esperado.
+  * Esta página contém exemplos visuais de todos os elementos suportados (callouts, imagens, wikilinks, código, formatação).
+  * Antes de qualquer release, o desenvolvedor deve acessar `/kitchen-sink` e verificar se tudo renderiza conforme esperado.
+  * Para documentação completa das features, veja `/docs`.
 * **Futuro (Nível 2):** Implementar Playwright para snapshots visuais automatizados.
 
 ## 3. Integração Contínua (CI)

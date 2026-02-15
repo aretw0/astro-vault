@@ -120,6 +120,41 @@ Seguiremos uma abordagem incremental para evitar *over-engineering*:
 * **Benefício:** DX consistente — o mesmo formato funciona em qualquer profundidade de pasta. O base path condicional (ADR-10) é aplicado automaticamente. Alias (`|`) permite textos de link humanizados.
 * **Alternativa descartada:** Criar um plugin remark customizado para reescrever links Markdown relativos adicionaria complexidade sem ganho real sobre wikilinks, que já são uma convenção aberta do ecossistema.
 
+#### ADR-12: Suporte Multi-Sintaxe para Callouts (Obsidian + Docusaurus + MkDocs)
+
+* **Contexto:** Usuários vêm de diferentes ecossistemas de edição de Markdown — alguns usam Obsidian (sintaxe `> [!note]`), outros Docusaurus (`:::note`), e outros MkDocs Material (`!!! note`). Forçar migração de sintaxe cria atrito desnecessário e quebra interoperabilidade entre editores.
+* **Problema:** A implementação original (ADR-07) suportava apenas sintaxe Obsidian-style. Notas vindas de projetos Docusaurus ou MkDocs não renderizavam callouts corretamente.
+* **Decisão:** Expandir o plugin `remark-callouts` para processar **três sintaxes simultaneamente**, todas gerando idêntica estrutura HTML semântica `<aside>`:
+  * **Obsidian-style:** `> [!note]` (via transformação de `blockquote` AST nodes).
+  * **Docusaurus-style:** `:::note` (via `remark-directive` + `containerDirective` AST nodes).
+  * **MkDocs-style:** `!!! note` (via parser customizado de `paragraph` nodes + blocos indentados).
+* **Implementação:**
+  * Adicionada dependência `remark-directive` (padrão CommonMark para containers `:::`).
+  * Criada função `createCalloutNode(type, title, children, types)` que normaliza todas as sintaxes para a mesma estrutura AST.
+  * Mantida lógica de aliases (`info` → `note`, `error` → `danger`, etc.) aplicável a todas as sintaxes.
+  * Suporte a aninhamento recursivo: callouts podem conter outros callouts de qualquer sintaxe.
+* **Benefícios:**
+  * **Máxima interoperabilidade:** Usuários podem migrar notas entre Obsidian, Docusaurus e MkDocs sem conversão.
+  * **Progressividade:** Equipes podem misturar sintaxes no mesmo documento durante transições graduais.
+  * **DX consistente:** Aparência visual idêntica independente da sintaxe escolhida.
+* **Trade-offs:**
+  * **Complexidade aumentada:** Plugin passou de ~170 para ~320 linhas. Parser de MkDocs-style é customizado (não há plugin padrão para `!!!`).
+  * **Testes expandidos:** Adicionados 16 novos casos de teste (24 totais) cobrindo as 3 sintaxes, aninhamento e coexistência.
+  * **Regressão controlada:** Testes unitários garantem que sintaxe Obsidian original permanece inalterada.
+* **Alternativas descartadas:**
+  * **Opção 1 (forçar migração):** Obrigar usuários a converter sintaxe cria barreira de entrada e quebra compatibilidade com editores.
+  * **Opção 2 (plugins separados):** Três plugins independentes (`remark-callouts-obsidian`, `remark-callouts-docusaurus`, `remark-callouts-mkdocs`) aumentariam complexidade de configuração sem benefício real — a lógica de normalização seria duplicada.
+  * **Opção 3 (regex manual completo):** Reimplementar parsing de containers `:::` sem `remark-directive` seria reinventar a roda; o plugin oficial é bem mantido e segue CommonMark spec.
+* **Decisões de design específicas:**
+  * **Prioridade de parsing:** Todas as sintaxes são processadas independentemente na mesma passada — não há conflito pois cada uma opera em nodes AST diferentes (`blockquote`, `containerDirective`, `paragraph`).
+  * **Indentação MkDocs:** Parser customizado consome blocos indentados com 4 espaços após `!!!`, seguindo convenção MkDocs Material.
+  * **Títulos customizados:** Cada sintaxe usa sua própria convenção (`> [!note] Title`, `:::note{title="Title"}`, `!!! note "Title"`), mas todas são normalizadas para `<p class="callout-title">`.
+  * **Fold markers Obsidian (`+`/`-`):** Detectados mas não implementados (requer JavaScript client-side). Documentados como "future enhancement".
+* **Referências:**
+  * Obsidian: `https://help.obsidian.md/Editing+and+formatting/Callouts`
+  * Docusaurus: `https://docusaurus.io/docs/markdown-features/admonitions`
+  * MkDocs Material: `https://squidfunk.github.io/mkdocs-material/reference/admonitions/`
+
 ### 3. SDD - Specification Driven Development (Simplificado)
 
 Poucos arquivos vivos em `/docs`:
@@ -140,7 +175,7 @@ Definir um ambiente reprodutível (Dev Container) apenas após estabilizar o MVP
 ### 5. Qualidade (QA & Testing)
 
 * **Style Guide (Kitchen Sink):**
-  * `src/pages/styleguide.md` é a "Nota Mestra" de teste de regressão visual.
+  * `src/pages/kitchen-sink.md` é a "Nota Mestra" de teste de regressão visual.
   * **Objetivo:** Sempre que alterar CSS, layouts ou plugins, verificar que imagens, links e formatações complexas continuam funcionando.
 * **BDD:** Testes de aceitação para garantir que o fluxo "Escrever Markdown → Push → Site Atualizado" funcione.
 * **TDD:** Testes unitários para lógicas complexas (plugins remark, sync-assets).

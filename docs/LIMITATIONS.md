@@ -24,7 +24,7 @@ Cada nível do Astro Vault **escolhe simplicidade** em áreas específicas, acei
 
 ### 1. Imagens não são otimizadas automaticamente
 
-**Sintoma:** Astro Dev Audit avisa "Use the Image component" no styleguide.
+**Sintoma:** Astro Dev Audit avisa "Use the Image component" no kitchen-sink.
 
 **Por quê:** O componente `<Image>` do Astro requer:
 
@@ -93,10 +93,17 @@ Estes são comportamentos que podem surpreender o usuário caso o vault cresça.
 
 **O que funciona (Nível 0-1):**
 
-- ✅ Tipos ilimitados via sintaxe `> [!custom-type]`
+- ✅ Três sintaxes suportadas: Obsidian (`> [!note]`), Docusaurus (`:::note`), MkDocs (`!!! note`)
+- ✅ Tipos ilimitados — qualquer sintaxe aceita tipos customizados
 - ✅ Configuração de cores por tipo em `astro.config.mjs`
 - ✅ Fallback automático para cor accent em tipos desconhecidos
 - ✅ Ícones via emoji/Unicode no título customizado
+
+**Limitação técnica de MkDocs:**
+
+- ⚠️ Callouts no estilo MkDocs (`!!! note`) **não suportam wikilinks ou outras extensões customizadas** dentro de seu conteúdo. Isso ocorre porque o parser MkDocs reconstrói o conteúdo em uma instância isolada do `remark`, sem acesso aos plugins configurados no Astro.
+- **Alternativa:** Use Obsidian (`> [!note]`) ou Docusaurus (`:::note`) para callouts que precisem de wikilinks, highlights ou outras sintaxes estendidas.
+- ✅ Callouts aninhados (qualquer sintaxe dentro de qualquer sintaxe)
 
 **O que NÃO funciona:**
 

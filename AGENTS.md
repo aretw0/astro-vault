@@ -17,10 +17,11 @@ Understand trade-offs and progression path in `docs/LIMITATIONS.md`.
   title: <page title>
   ```
 
-- **Extended Markdown support** via three remark plugins configured in `astro.config.mjs`:
-  - `remark-wiki-link`: Wikilinks `[[My Note]]` → `/<base>/my-note` (lowercase, spaces → hyphens).
+- **Extended Markdown support** via remark plugins configured in `astro.config.mjs`:
+  - `remark-wiki-link`: Wikilinks `[[My Note]]` → `/<base>/my-note` (lowercase, spaces → hyphens). **Auto-removes `/index` suffix** to avoid 404s (`[[folder/index]]` → `/folder`).
   - `remark-wiki-image-embeds` (`src/plugins/remark-wiki-image-embeds.js`): Image embeds `![[image.png]]` → `<img src="<base>/assets/image.png">`.
-  - `remark-callouts` (`src/plugins/remark-callouts.js`): Semantic callouts `> [!note]` → `<aside class="callout callout-note">`. **Customizable** via `options.types` in config (see ADR-09).
+  - `remark-directive`: CommonMark directive support for Docusaurus-style containers (`:::note`).
+  - `remark-callouts` (`src/plugins/remark-callouts.js`): Multi-syntax callouts (Obsidian `> [!note]`, Docusaurus `:::note`, MkDocs `!!! note`) → `<aside class="callout callout-note">`. **Supports three syntaxes, nested callouts, and customizable types** via `options.types` in config (see ADR-09 and ADR-12).
 - **Smart Asset Sync** (`src/integrations/sync-assets.js`): scans all `.md` for image references and copies only those from `src/assets/` to `public/assets/`. Files prefixed with `_` are ignored (private).
 
 ## Key files
@@ -33,7 +34,7 @@ Understand trade-offs and progression path in `docs/LIMITATIONS.md`.
 | Callouts remark plugin        | `src/plugins/remark-callouts.js`        |
 | Base layout (all pages)       | `src/layouts/BaseLayout.astro`          |
 | Global styles (dark theme)    | `src/styles/global.css`                 |
-| Visual regression test page   | `src/pages/styleguide.md`               |
+| Kitchen sink test page        | `src/pages/kitchen-sink.md`               |
 | Unit tests (Plugins)          | `tests/remark-callouts.test.mjs`        |
 
 ## Conventions

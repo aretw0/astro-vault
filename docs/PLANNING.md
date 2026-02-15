@@ -45,7 +45,7 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [x] **Fix: Propagar `base` para wikilink `hrefTemplate` e `remark-wiki-image-embeds`.**
 - [x] **Fix: Usar `import.meta.env.BASE_URL` no nav do `BaseLayout.astro`.**
 - [x] **Fix: Atualizar conteúdo do `index.md`** — texto ainda referencia `src/content` e estrutura desatualizada.
-- [x] Verificar regressão visual no `styleguide.md` após fixes de base path.
+- [x] Verificar regressão visual no `kitchen-sink.md` após fixes de base path.
 - [x] Configuração de versionamento e release (ADR-06: VERSION como fonte de verdade).
 - [x] Definir e automatizar a fonte de verdade da versão (`VERSION` + `package.json`).
 - [x] Exibir versão no site (dogfood de interpolação em `BaseLayout.astro`).
@@ -81,9 +81,9 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [x] Publicar os guias também como páginas do site (para leitura online).
 - [x] Estruturar conteúdo pensando em futura internacionalização (PT-BR primeiro).
 
-### Fase 0.4.1: Ajustes Callouts
+### Fase 0.4.1: Ajustes Callouts — CONCLUÍDA
 
-- [ ] Revisar o suporte a callouts para permitir Docusaurus-style e MkDocs-style admonitions.
+- [x] Revisar o suporte a callouts para permitir Docusaurus-style e MkDocs-style admonitions.
 
 ### Fase 1.0.0: Template Público
 
