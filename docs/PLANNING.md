@@ -63,6 +63,23 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 *Foco: Melhorar a experiência visual do site.*
 
 - [ ] Temas/Layouts com foco em leitura (tipografia, espaçamento, dark mode refinado).
+  - [ ] Layout de blog (opcional, desejável para Digital Gardens).
+  - [ ] Layout de portfólio (opcional, desejável para Artistas).
+  - [ ] Verificar como separar estilos globais de temas específicos (ex: blog) para não poluir o CSS base.
+  - [ ] Verificar impacto de temas mais complexos na simplicidade do template (ex: blog com sidebar vs layout mais simples).
+  - [ ] Dark mode: avaliar se o toggle deve ser global ou por tema (ex: blog pode ter dark mode, mas portfólio não).
+  - [ ] Verificar necessidade de configuração adicional para temas (ex: frontmatter para escolher tema por página).
+  - [ ] Garantir que temas não quebrem a simplicidade do setup (ex: tema deve ser opcional e fácil de aplicar).
+  - [ ] Documentar como usar temas e criar novos temas (ex: criar um tema customizado para portfólio).
+  - [ ] Testar temas com diferentes tipos de conteúdo (texto, imagens, callouts) para garantir consistência visual.
+  - [ ] Verificar performance dos temas (ex: evitar temas com muitos assets ou scripts que possam impactar o tempo de carregamento).
+  - [ ] Considerar acessibilidade nos temas (contraste, legibilidade, navegação por teclado).
+  - [ ] Verificar compatibilidade dos temas com diferentes navegadores e dispositivos.
+  - [ ] Criar um tema base minimalista que possa ser customizado facilmente (ex: tema com variáveis CSS para cores e fontes).
+  - [ ] Avaliar se os temas devem ser parte do template ou se devem ser pacotes separados (ex: `astro-vault-theme-blog`).
+  - [ ] Documentar processo de criação de temas para incentivar contribuições da comunidade.
+  - [ ] Criar exemplos de temas para diferentes casos de uso (blog, portfólio, digital garden).
+  - [ ] Verificar se os temas podem ser aplicados globalmente ou por página (ex: frontmatter para escolher tema).
 - [ ] Quebra de linha e formatação de código melhoradas.
 - [ ] Meta tags para SEO básico.
 - [ ] Open Graph tags para compartilhamento.
@@ -81,6 +98,7 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 *Foco: Tornar o template usável por terceiros com automação de inicialização.*
 
 - [ ] GitHub Actions para inicialização do template (retirar arquivos e referências específicas do template, deixando apenas o necessário).
+- [ ] Estudar o [`aretw0/template-initializer`](https://github.com/aretw0/template-initializer) para automação de setup. Obs.: vault-seed faz uso do `template-initializer` para criar repositórios personalizados a partir do template.
 - [ ] Validação final de todos os fluxos (clone → edit → push → deploy).
 - [ ] Release notes e changelog estruturado.
 - [ ] Anúncio público do template.
