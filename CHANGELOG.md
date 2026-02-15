@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/aretw0/astro-vault/compare/v0.3.1...v0.4.0) (2026-02-15)
+
+
+### 📚 Documentation
+
+* **onboarding:** add guide content for editor, template, and conventions ([756b6e9](https://github.com/aretw0/astro-vault/commit/756b6e97c3895eb4c5c99948ac7c4e550fc591cd))
+* update roadmap for fase 0.4.0 (Onboarding) ([6b1e02b](https://github.com/aretw0/astro-vault/commit/6b1e02bef4338fbe90ff83735cfe6bae9302b2e0))
+
+
+### ✨ Features
+
+* **config:** implement conditional base path for better local DX ([580b05b](https://github.com/aretw0/astro-vault/commit/580b05b8d7589233cd9b152834179d55f454422e))
+* **markdown:** enable wikilink aliases and add regression tests ([98091a3](https://github.com/aretw0/astro-vault/commit/98091a336111cc8a6d8fd7d1dd1bd6348fb0e074))
+* **onboarding:** implement site pages and internal navigation conventions ([17e859a](https://github.com/aretw0/astro-vault/commit/17e859a186ba304c96c4471739adae043b82a73d))
+
+
+### 🔧 Chores
+
+* conclude fase 0.4.0 in planning ([b37fb87](https://github.com/aretw0/astro-vault/commit/b37fb87327292216afc9ef03de59ed466d07785e))
+
 ### [0.3.1](https://github.com/aretw0/astro-vault/compare/v0.3.0...v0.3.1) (2026-02-15)
 
 
