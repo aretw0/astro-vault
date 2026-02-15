@@ -18,8 +18,8 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - **Fases e SemVer:**
   - `v0.1.0` = MVP (site funcional, base path, versionamento) — ✅ CONCLUÍDA
   - `v0.2.0` = Sintaxes e Convenções (callouts, getImage research) — ✅ CONCLUÍDA
-  - `v0.3.0` = Visual e Leitura (temas, SEO, meta tags)
-  - `v0.4.0` = Documentação e Onboarding (tutoriais, FAQ)
+  - `v0.3.0` = Visual e Leitura (temas, SEO, meta tags) — ✅ CONCLUÍDA
+  - `v0.4.0` = Documentação e Onboarding (tutoriais, FAQ) — ✅ CONCLUÍDA
   - `v1.0.0` = Template Público (inicialização automática, release)
   - `v2.0.0+` = Progressive Disclosure avançado (Content Collections, frameworks, islands)
 
@@ -70,16 +70,16 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [x] Meta tags para SEO básico.
 - [x] Open Graph tags para compartilhamento.
 
-### Fase 0.4.0: Documentação e Onboarding
+### Fase 0.4.0: Documentação e Onboarding — CONCLUÍDA
 
 *Foco: Preparar usuários para usar o template.*
 
-- [ ] Tutorial: Como usar seu editor Markdown favorito com Git (fluxo sem terminal; VS Code, Obsidian, iA Writer, etc.).
-- [ ] Tutorial: Como configurar o template do zero e fazer o primeiro deploy.
-- [ ] Documentar convenções de nomes de arquivos e estrutura de pastas.
-- [ ] FAQ sobre limitações e progressão de níveis (com links diretos para LIMITATIONS).
-- [ ] Publicar os guias também como páginas do site (para leitura online).
-- [ ] Estruturar conteúdo pensando em futura internacionalização (PT-BR primeiro).
+- [x] Tutorial: Como usar seu editor Markdown favorito com Git (fluxo sem terminal; VS Code, Obsidian, iA Writer, etc.).
+- [x] Tutorial: Como configurar o template do zero e fazer o primeiro deploy.
+- [x] Documentar convenções de nomes de arquivos e estrutura de pastas.
+- [x] FAQ sobre limitações e progressão de níveis (com links diretos para LIMITATIONS).
+- [x] Publicar os guias também como páginas do site (para leitura online).
+- [x] Estruturar conteúdo pensando em futura internacionalização (PT-BR primeiro).
 
 ### Fase 1.0.0: Template Público
 
