@@ -20,4 +20,4 @@ Fluxo simples para editar notas e publicar sem terminal.
 - Arquivos com _ sao ignorados.
 - Imagens ficam em src/assets.
 
-Proximo: [[onboarding/template|Configurar o template]].
+Próximo: [[guide/template|Configurar o template]].

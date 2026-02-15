@@ -21,4 +21,4 @@ Links com `./` podem falhar. Use wikilinks `[[pasta/arquivo|Texto]]` ou `../` pa
 
 Rode `npm run test` e reinicie o dev server.
 
-Mais detalhes: veja LIMITATIONS.md e TECHNICAL.md no repositorio.
+Mais detalhes: veja [`LIMITATIONS.md`](https://github.com/aretw/astro-vault/blob/main/LIMITATIONS.md) e [`TECHNICAL.md`](https://github.com/aretw/astro-vault/blob/main/TECHNICAL.md) no repositório.

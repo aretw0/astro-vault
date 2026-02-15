@@ -5,14 +5,14 @@ title: Configurar o template
 
 # Configurar o template
 
-## Passos basicos
+## Passos básicos
 
-1. Crie um repositorio a partir do template.
+1. Crie um repositório a partir do template.
 2. Edite astro.config.mjs e substitua '/astro-vault' pelo nome do seu repo.
-3. Edite src/pages/index.md com seu conteudo.
+3. Edite src/pages/index.md com seu conteúdo.
 4. Commit e Push.
 
-O site sera publicado automaticamente no GitHub Pages.
+O site será publicado automaticamente no GitHub Pages.
 
 ## Opcional: rodar local
 
@@ -21,4 +21,4 @@ npm install
 npm run dev
 ```
 
-Proximo: [[onboarding/conventions|Convencoes]].
+Próximo: [[guide/conventions|Convenções]].
