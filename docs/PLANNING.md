@@ -6,11 +6,20 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 
 **Contexto de limitações:** Para entender os trade-offs conscientes de cada nível de Progressive Disclosure, consulte [`LIMITATIONS.md`](./LIMITATIONS.md).
 
+## Versionamento (SemVer)
+
+**Objetivo:** Comunicar fases por SemVer e tornar a versão do projeto sempre disponível para uso no site e na documentação.
+
+- **Fonte de verdade:** `VERSION`.
+- **Sincronização:** `package.json` deve espelhar o mesmo número de versão.
+- **Dogfood:** Exibir a versão no site (ex.: "Built by Astro Vault v{{VAULT_VERSION}}").
+- **Virada de chave:** Fase 2 inicia em `v1.0.0`.
+
 ## Roadmap
 
 ### Fase 0: Validação Técnica (Spike) — CONCLUÍDA
 
-*Foco: Garantir que a integração Obsidian → Astro é viável sem hacks excessivos.*
+*Foco: Garantir que a integração Markdown → Astro é viável sem hacks excessivos.*
 
 - [x] Validar renderização de Wikilinks (`[[nota]]`) no Astro.
 - [x] Validar renderização de imagens locais (`![[imagem.png]]`) no Astro.
@@ -18,9 +27,9 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [x] Implementar "Smart Asset Sync" (apenas imagens usadas).
 - [x] Arquitetura "Pages as Content" (simplicidade).
 
-### Fase 1: MVP — EM ANDAMENTO
+### Fase 0.1.0: MVP — EM ANDAMENTO
 
-*Foco: Site no ar, funcional, editável pelo Obsidian.*
+*Foco: Site no ar, funcional, editável por Markdown.*
 
 - [x] Setup inicial do Astro (template básico).
 - [x] Configuração do GitHub Actions para deploy no Pages.
@@ -28,10 +37,12 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [x] **Fix: Propagar `base` para wikilink `hrefTemplate` e `remark-wiki-image-embeds`.**
 - [x] **Fix: Usar `import.meta.env.BASE_URL` no nav do `BaseLayout.astro`.**
 - [x] **Fix: Atualizar conteúdo do `index.md`** — texto ainda referencia `src/content` e estrutura desatualizada.
-- [ ] Verificar regressão visual no `styleguide.md` após fixes de base path.
+- [x] Verificar regressão visual no `styleguide.md` após fixes de base path.
 - [ ] Configuração de versionamento e release.
+- [ ] Definir e automatizar a fonte de verdade da versão (`VERSION` + `package.json`).
+- [ ] Exibir versão no site (dogfood de interpolacao de `VAULT_VERSION`).
 
-### Fase 2: Experiência do Usuário (DX & UX)
+### Fase 0.2.0: Experiência do Usuário (DX & UX)
 
 *Foco: Template usável por terceiros.*
 
@@ -42,7 +53,7 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 - [ ] Suporte a Callouts/Admonitions.
 - [ ] **Research:** Investigar `getImage()` do Astro para otimização de imagem em plugin remark (tentar resolver no Nível 0-1 sem migrar para MDX). Ver limitação documentada em `LIMITATIONS.md`.
 
-### Fase 3: Evolução Astro (Progressive Disclosure)
+### Fase 0.3.0: Evolução Astro (Progressive Disclosure)
 
 *Foco: Abrir caminho para níveis avançados sem forçar migração.*
 
@@ -60,6 +71,8 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 
 ## Tarefas Imediatas
 
-1. [ ] Resolver todos os itens `Fix:` da Fase 1 (base path).
-2. [ ] Validar deploy funcional no GitHub Pages.
-3. [ ] Limpar conteúdo desatualizado (index.md, README.md).
+1. [x] Resolver todos os itens `Fix:` da Fase 0.1.0 (base path).
+2. [x] Validar deploy funcional no GitHub Pages.
+3. [x] Limpar conteúdo desatualizado (index.md, README.md).
+4. [ ] Definir versao fonte de verdade e garantir sincronizacao (`VERSION` + `package.json`).
+5. [ ] Dogfood: interpolar a versao no site (ex.: "Built by Astro Vault v{{VAULT_VERSION}}").
