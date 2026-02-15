@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/aretw0/astro-vault/compare/v0.3.0...v0.3.1) (2026-02-15)
+
+
+### ✨ Features
+
+* **ci:** automate release notes extraction using changelog script ([c13bec0](https://github.com/aretw0/astro-vault/commit/c13bec0896f5b650ee0a866bbb3b9f0f25ad88ab))
+
+
+### 🐛 Bug Fixes
+
+* **release:** add missing release:patch script to package.json ([9f532e5](https://github.com/aretw0/astro-vault/commit/9f532e54ee267e2fb33e0a88ec3335e87b73c893))
+
 ## [0.3.0](https://github.com/aretw0/astro-vault/compare/v0.2.0...v0.3.0) (2026-02-15)
 
 
