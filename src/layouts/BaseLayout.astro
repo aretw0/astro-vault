@@ -29,11 +29,29 @@ const version = versionRaw.trim();
       class="container"
       style="padding-top: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border);"
     >
-      <nav>
+      <nav style="display: flex; align-items: center; gap: 1.5rem;">
         <a
           href={base}
-          style="font-weight: bold; font-size: 1.2rem; color: var(--text-normal);"
+          style="font-weight: bold; font-size: 1.5rem; color: var(--text-normal); text-decoration: none;"
+          aria-label="Página inicial do Astro Vault"
+        >
+          🌱 Astro Vault
+        </a>
+        <span style="color: var(--border);" aria-hidden="true">|</span>
+        <a
+          href={base}
+          style="font-weight: 600; font-size: 1.125rem; color: var(--text-normal);"
           >Início</a
+        >
+        <a
+          href={`${base}/guide`.replace(/\/\//g, '/')}
+          style="font-weight: 600; font-size: 1.125rem; color: var(--text-normal);"
+          >Guia</a
+        >
+        <a
+          href={`${base}/docs`.replace(/\/\//g, '/')}
+          style="font-weight: 600; font-size: 1.125rem; color: var(--text-normal);"
+          >Docs</a
         >
       </nav>
     </header>
