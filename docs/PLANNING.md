@@ -74,10 +74,12 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 
 *Foco: Preparar usuários para usar o template.*
 
-- [ ] Tutorial: Como usar seu editor Markdown favorito com Git (compatibilidade com VS Code, Obsidian, iA Writer, etc).
-- [ ] Tutorial: Como configurar para uso do template.
+- [ ] Tutorial: Como usar seu editor Markdown favorito com Git (fluxo sem terminal; VS Code, Obsidian, iA Writer, etc.).
+- [ ] Tutorial: Como configurar o template do zero e fazer o primeiro deploy.
 - [ ] Documentar convenções de nomes de arquivos e estrutura de pastas.
-- [ ] FAQ sobre limitações e progressão de níveis.
+- [ ] FAQ sobre limitações e progressão de níveis (com links diretos para LIMITATIONS).
+- [ ] Publicar os guias também como páginas do site (para leitura online).
+- [ ] Estruturar conteúdo pensando em futura internacionalização (PT-BR primeiro).
 
 ### Fase 1.0.0: Template Público
 
