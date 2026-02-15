@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # generated assets (synced from content)
 public/assets/
+
+# playwright test artifacts
+.playwright-mcp/

@@ -6,6 +6,8 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 
 **Contexto de limitações:** Para entender os trade-offs conscientes de cada nível de Progressive Disclosure, consulte [`LIMITATIONS.md`](./LIMITATIONS.md).
 
+**Processo de release:** Para entender como as colheitas são geradas e documentadas, consulte [`RELEASE_PROCESS.md`](./RELEASE_PROCESS.md).
+
 ## Versionamento (SemVer)
 
 **Objetivo:** Comunicar fases por SemVer e tornar a versão do projeto sempre disponível para uso no site e na documentação.

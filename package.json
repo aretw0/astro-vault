@@ -1,13 +1,17 @@
 {
   "name": "astro-vault",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "clean": "rimraf .astro node_modules/.vite dist public/assets"
+    "clean": "rimraf .astro node_modules/.vite dist public/assets",
+    "release": "standard-version --infile CHANGELOG.md",
+    "release:dry": "standard-version --infile CHANGELOG.md --dry-run",
+    "release:minor": "standard-version --infile CHANGELOG.md --release-as minor",
+    "release:major": "standard-version --infile CHANGELOG.md --release-as major"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
@@ -20,6 +24,7 @@
   "devDependencies": {
     "prettier": "3.7.3",
     "prettier-plugin-astro": "0.14.1",
-    "rimraf": "^6.1.2"
+    "rimraf": "^6.1.2",
+    "standard-version": "^9.5.0"
   }
 }

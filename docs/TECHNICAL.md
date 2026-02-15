@@ -6,7 +6,7 @@ O Astro Vault adota uma abordagem de **revelação progressiva** da plataforma A
 
 | Nível | O usuário faz | O que aprende |
 |-------|--------------|---------------|
-| 0 | Escreve `.md` em `src/pages/`, dá push | Markdown vira site |
+| 0 | Escreve `.md`, faz o release (tag) | Markdown vira site (fluxo de colheita) |
 | 1 | Edita frontmatter, CSS, layout | Estrutura de um site Astro |
 | 2 | Usa Content Collections (`src/content/`) | APIs avançadas do Astro |
 | 3 | Integra React/Vue/Svelte, islands | Poder total do Astro |
@@ -67,11 +67,12 @@ Seguiremos uma abordagem incremental para evitar *over-engineering*:
 * **Motivo:** Simplicidade e visibilidade — um arquivo de texto puro, fácil de editar e automatizar via scripts/CI.
 * **Sincronização:** `package.json` espelha a mesma versão. Ferramentas podem validar consistência (e.g., npm version hook ou script pré-commit).
 * **Interpolação no site:** `BaseLayout.astro` importa `VERSION?raw` (Vite raw import) e exibe no footer: "Built with Astro Vault v{version}".
+* **Processo de Automação:** Detalhes sobre como gerenciar releases e versionamento estão em [`RELEASE_PROCESS.md`](./RELEASE_PROCESS.md).
 * **Dogfooding:** Demonstra ao usuário que dados externos podem ser interpolados em páginas Astro — preparação conceitual para níveis avançados.
 * **SemVer e fases:**
-  - `v0.x.y` = MVP / Fase 1 (em desenvolvimento)
-  - `v1.0.0` = Fase 2 (template usável por terceiros)
-  - `v2.0.0+` = Fase 3 (Progressive Disclosure completa)
+  * `v0.x.y` = MVP / Fase 1 (em desenvolvimento)
+  * `v1.0.0` = Fase 2 (template usável por terceiros)
+  * `v2.0.0+` = Fase 3 (Progressive Disclosure completa)
 
 ### 3. SDD - Specification Driven Development (Simplificado)
 

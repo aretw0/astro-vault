@@ -1,5 +1,9 @@
 # Astro Vault 🌱
 
+[![License](https://img.shields.io/github/license/aretw0/astro-vault.svg?color=purple)](LICENSE.md)
+[![Release](https://img.shields.io/github/v/release/aretw0/astro-vault.svg?branch=main)](https://github.com/aretw0/astro-vault/releases)
+[![Deploy](https://github.com/aretw0/astro-vault/actions/workflows/deploy.yml/badge.svg)](https://github.com/aretw0/astro-vault/actions/workflows/deploy.yml)
+
 A digital garden for your Markdown notes, powered by **Astro**.
 Publish with zero friction — then grow progressively into the full power of web development.
 

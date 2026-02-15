@@ -1,0 +1,28 @@
+{
+  "packageFiles": [
+    {
+      "filename": "VERSION",
+      "type": "plain-text"
+    }
+  ],
+  "bumpFiles": [
+    {
+      "filename": "VERSION",
+      "type": "plain-text"
+    },
+    {
+      "filename": "package.json",
+      "type": "json"
+    }
+  ],
+  "types": [
+    { "type": "feat", "section": "✨ Features" },
+    { "type": "fix", "section": "🐛 Bug Fixes" },
+    { "type": "refactor", "section": "♻️ Refactoring" },
+    { "type": "chore", "section": "🔧 Chores", "hidden": false },
+    { "type": "docs", "section": "📚 Documentation" },
+    { "type": "test", "section": "✅ Tests", "hidden": true },
+    { "type": "style", "section": "💄 Styling", "hidden": true },
+    { "type": "perf", "section": "⚡ Performance", "hidden": true }
+  ]
+}
