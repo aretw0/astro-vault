@@ -6,4 +6,4 @@ title: Ignored Note
 ## Ignored Note
 
 This is an ignored note.
-Back to [[StyleGuide]].
+Back to [[kitchen-sink]].

@@ -6,4 +6,4 @@ title: Linked Note
 ## Linked Note
 
 This is a linked note.
-Back to [[StyleGuide]].
+Back to [[kitchen-sink]].

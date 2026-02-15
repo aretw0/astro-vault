@@ -8,14 +8,22 @@ description: Seu Digital Garden progressivo. Notas em Markdown transformadas em 
 
 Seu Digital Garden progressivo: escreva em Markdown, publique com um push, cresca no ritmo certo.
 
-## Comece por aqui
+## 🚀 Guia
 
-- [[onboarding|Onboarding]]
-- [[onboarding/editor|Editor Markdown + Git (sem terminal)]]
-- [[onboarding/template|Configurar o template]]
+- [[guide/index|Início Rápido]]
+- [[guide/editor|Editor Markdown + Git (sem terminal)]]
+- [[guide/template|Configurar o template]]
 
-## Notas do projeto
+## 📖 Documentação
 
-- [[styleguide]]
-- [[linked-note]]
-- [[syntaxes]]
+- [[docs/index|Documentação Completa]]
+- [[docs/markdown|Markdown Básico]]
+- [[docs/links|Links e Wikilinks]]
+- [[docs/images|Imagens]]
+- [[docs/callouts|Callouts]]
+
+## 📝 Notas do projeto
+
+- [[kitchen-sink|Kitchen Sink (testes visuais)]]
+- [[syntaxes|Referência de Sintaxes]]
+- [[linked-note|Exemplo de Nota Linkada]]
