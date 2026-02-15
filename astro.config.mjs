@@ -4,8 +4,13 @@ import syncAssets from './src/integrations/sync-assets.js';
 import remarkCallouts from './src/plugins/remark-callouts.js';
 import remarkWikiImageEmbeds from './src/plugins/remark-wiki-image-embeds.js';
 
-// Base path: '/astro-vault' for GitHub Pages project sites, '/' for custom domains.
-const base = '/astro-vault';
+// ⚠️ USER ACTION REQUIRED: Update the repo name below
+// Base path configuration for GitHub Pages deployment
+// - Local development always uses '/'
+// - Production builds use '/your-repo-name'
+// TODO: Replace '/astro-vault' with your GitHub repository name
+const isProd = process.env.NODE_ENV === 'production';
+const base = isProd ? '/astro-vault' : '/';  // ← CHANGE THIS
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,10 +27,15 @@ export default defineConfig({
           danger: { color: '#ff5252' }
         }
       }],
-      [remarkWikiImageEmbeds, { base }],
+      [remarkWikiImageEmbeds, { base: base === '/' ? '' : base }],
       [wikiLinkPlugin, {
+        aliasDivider: '|',
         pageResolver: (name) => [name.toLowerCase().replace(/ /g, '-')],
-        hrefTemplate: (permalink) => `${base}/${permalink}`,
+        hrefTemplate: (permalink) => {
+          if (permalink.startsWith('#')) return permalink; // Anchor links
+          const path = permalink.replace(/ /g, '-').toLowerCase();
+          return base === '/' ? `/${path}` : `${base}/${path}`;
+        },
       }]
     ]
   }

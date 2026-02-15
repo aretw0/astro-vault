@@ -102,6 +102,24 @@ Seguiremos uma abordagem incremental para evitar *over-engineering*:
   * **Nível 2 (futuro):** Schema Zod em Content Collections valida tipos permitidos. Callouts renderizados via componente Astro customizado que aceita ícones SVG, layouts complexos, e slots.
   * **Nível 3 (islands):** Callouts colapsáveis/interativos via framework (React/Vue).
 
+#### ADR-10: Base Path Condicional para DX
+
+* **Problema:** Desenvolver com `base: '/astro-vault'` força navegação para `localhost:4321/astro-vault`, criando fricção desnecessária no desenvolvimento local.
+* **Decisão:** Usar `base: '/'` em desenvolvimento e `base: '/repo-name'` em produção via detecção de `process.env.NODE_ENV`.
+* **Benefício:** DX superior — desenvolvedores navegam diretamente para `localhost:4321/` enquanto o build de produção gera URLs corretos para GitHub Pages.
+* **Configuração necessária:** O usuário deve editar a linha `const base = isProd ? '/astro-vault' : '/';` em `astro.config.mjs` substituindo `'/astro-vault'` pelo nome do seu repositório.
+* **Validação:** Wikilinks e image embeds devem respeitar o base path correto em ambos os ambientes.
+* **Trade-off aceito:** Requer ação manual do usuário ao clonar o template. Futuras automações (template-initializer, ADR futuro) devem substituir esse valor programaticamente.
+
+#### ADR-11: Wikilinks para Navegação Interna
+
+* **Problema:** Links Markdown com `./` (mesmo nível) dentro de subpastas de `src/pages/` resolvem incorretamente no browser. Um link `./editor` dentro de `/onboarding/index.md` resolve para `/editor` (root) em vez de `/onboarding/editor`.
+* **Causa raiz:** O Astro não reescreve links Markdown para URLs absolutas. O browser interpreta `./` baseado na URL atual, e `/onboarding` sem trailing slash é tratado como arquivo, não como pasta.
+* **O que funciona:** Links com `../` (subir nível) funcionam corretamente: `[FAQ](../onboarding/faq)`. Porém, são verbosos e exigem conhecimento da estrutura de pastas.
+* **Decisão:** Usar wikilinks (`[[onboarding/editor|Texto]]`) para toda navegação interna. O plugin `remark-wiki-link` transforma wikilinks em URLs absolutas que respeitam a estrutura de pastas e o base path.
+* **Benefício:** DX consistente — o mesmo formato funciona em qualquer profundidade de pasta. O base path condicional (ADR-10) é aplicado automaticamente. Alias (`|`) permite textos de link humanizados.
+* **Alternativa descartada:** Criar um plugin remark customizado para reescrever links Markdown relativos adicionaria complexidade sem ganho real sobre wikilinks, que já são uma convenção aberta do ecossistema.
+
 ### 3. SDD - Specification Driven Development (Simplificado)
 
 Poucos arquivos vivos em `/docs`:
