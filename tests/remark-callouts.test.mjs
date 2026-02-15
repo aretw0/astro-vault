@@ -76,11 +76,11 @@ describe('remark-callouts', () => {
   });
 
   it('generates default title from type name', async () => {
-    const md = '> [!important]\n> Pay attention.';
+    const md = '> [!my-custom-type]\n> Custom content.';
     const html = await process(md);
 
-    expect(html).toContain('callout-important');
-    expect(html).toContain('Important');
+    expect(html).toContain('callout-my-custom-type');
+    expect(html).toContain('My custom type');
   });
 
   it('handles fold markers without breaking', async () => {
