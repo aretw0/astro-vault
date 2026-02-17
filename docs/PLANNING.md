@@ -85,6 +85,12 @@ Este documento centraliza o Roadmap, Backlog e Tarefas do projeto Astro Vault.
 
 - [x] Revisar o suporte a callouts para permitir Docusaurus-style e MkDocs-style admonitions.
 
+### Fase 0.4.2: Patching ui, deploy, gitpages, domain
+
+- [x] Revisar o deploy no GitHub Pages.
+- [x] Revisar o domínio.
+- [x] Revisar o UI.
+
 ### Fase 1.0.0: Template Público
 
 *Foco: Tornar o template usável por terceiros com automação de inicialização.*

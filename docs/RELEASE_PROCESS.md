@@ -73,6 +73,17 @@ git push --follow-tags origin main
 - **Site Deploy:** O workflow `deploy.yml` é acionado **apenas pela tag**. Isso garante que o site público reflita apenas versões estáveis (colheitas), enquanto o `main` serve para o histórico de trabalho.
 - O site será atualizado automaticamente em `https://aretw0.github.io/astro-vault/`.
 
+### Passo 4: Deploys Ad-hoc (Opcional)
+
+Graças à nossa orquestração dinâmica, você pode disparar deploys para destinos diferentes sem mudar o código:
+
+1. Vá em **Actions** > **Deploy to GitHub Pages**.
+2. Clique em **Run workflow**.
+3. Preencha `site` (ex: `https://meu-dominio.com`) e `base` (ex: `/`).
+4. Clique em **Run workflow**.
+
+Isso usará as variáveis `ASTRO_SITE` e `ASTRO_BASE` injetadas no ambiente de build para gerar os links corretos.
+
 ## 4. Nuances e Lições Aprendidas (via vault-seed)
 
 ### O "Release Gate" (Guarda de Release)

@@ -102,16 +102,22 @@ Seguiremos uma abordagem incremental para evitar *over-engineering*:
   * **Nível 2 (futuro):** Schema Zod em Content Collections valida tipos permitidos. Callouts renderizados via componente Astro customizado que aceita ícones SVG, layouts complexos, e slots.
   * **Nível 3 (islands):** Callouts colapsáveis/interativos via framework (React/Vue).
 
-#### ADR-10: Base Path Condicional para DX
+#### ADR-10: Configuração Multi-Target Dinâmica (Site & Base)
 
-* **Problema:** Desenvolver com `base: '/astro-vault'` força navegação para `localhost:4321/astro-vault`, criando fricção desnecessária no desenvolvimento local.
-* **Decisão:** Usar `base: '/'` em desenvolvimento e `base: '/repo-name'` em produção via detecção de `process.env.NODE_ENV`.
-* **Benefício:** DX superior — desenvolvedores navegam diretamente para `localhost:4321/` enquanto o build de produção gera URLs corretos para GitHub Pages.
-* **Configuração necessária:** O usuário deve editar a linha `const base = isProd ? '/astro-vault' : '/';` em `astro.config.mjs` substituindo `'/astro-vault'` pelo nome do seu repositório.
-* **Validação:** Wikilinks e image embeds devem respeitar o base path correto em ambos os ambientes.
-* **Trade-off aceito:** Requer ação manual do usuário ao clonar o template. Futuras automações (template-initializer, ADR futuro) devem substituir esse valor programaticamente.
+* **Problema:** O deploy em diferentes ambientes (GitHub Pages, domínios customizados, local) exigia alterações manuais no código, gerando risco de commits acidentais de URLs de teste.
+* **Decisão:** Mover a configuração de `site` e `base` para variáveis de ambiente (`ASTRO_SITE` e `ASTRO_BASE`) lidas no `astro.config.mjs`.
+* **Implementação:** O Astro tenta ler as variáveis do ambiente. Caso ausentes, aplica fallbacks inteligentes:
+  * Em dev: `base: '/'`.
+  * Em prod: `base: '/astro-vault'`.
+* **Benefício:** O mesmo código builda para qualquer destino apenas mudando os parâmetros da CI ou do terminal.
 
-#### ADR-11: Wikilinks para Navegação Interna
+#### ADR-11: Injeção de Metadados de Build (Traceability)
+
+* **Decisão:** Injetar metadados do GitHub Actions (`SHA`, `run_id`, `repo_url`) como variáveis `PUBLIC_` durante o build.
+* **Uso:** Estas variáveis são renderizadas no `BaseLayout.astro` (header/footer).
+* **Benefício:** Rastreabilidade total — qualquer página estática pode ser vinculada ao commit e à execução da CI exata que a gerou.
+
+#### ADR-12: Wikilinks para Navegação Interna
 
 * **Problema:** Links Markdown com `./` (mesmo nível) dentro de subpastas de `src/pages/` resolvem incorretamente no browser. Um link `./editor` dentro de `/onboarding/index.md` resolve para `/editor` (root) em vez de `/onboarding/editor`.
 * **Causa raiz:** O Astro não reescreve links Markdown para URLs absolutas. O browser interpreta `./` baseado na URL atual, e `/onboarding` sem trailing slash é tratado como arquivo, não como pasta.
@@ -120,7 +126,7 @@ Seguiremos uma abordagem incremental para evitar *over-engineering*:
 * **Benefício:** DX consistente — o mesmo formato funciona em qualquer profundidade de pasta. O base path condicional (ADR-10) é aplicado automaticamente. Alias (`|`) permite textos de link humanizados.
 * **Alternativa descartada:** Criar um plugin remark customizado para reescrever links Markdown relativos adicionaria complexidade sem ganho real sobre wikilinks, que já são uma convenção aberta do ecossistema.
 
-#### ADR-12: Suporte Multi-Sintaxe para Callouts (Obsidian + Docusaurus + MkDocs)
+#### ADR-13: Suporte Multi-Sintaxe para Callouts (Obsidian + Docusaurus + MkDocs)
 
 * **Contexto:** Usuários vêm de diferentes ecossistemas de edição de Markdown — alguns usam Obsidian (sintaxe `> [!note]`), outros Docusaurus (`:::note`), e outros MkDocs Material (`!!! note`). Forçar migração de sintaxe cria atrito desnecessário e quebra interoperabilidade entre editores.
 * **Problema:** A implementação original (ADR-07) suportava apenas sintaxe Obsidian-style. Notas vindas de projetos Docusaurus ou MkDocs não renderizavam callouts corretamente.
