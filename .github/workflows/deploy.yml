@@ -25,6 +25,9 @@ permissions:
 env:
   ASTRO_SITE: ${{ inputs.site || vars.ASTRO_SITE || 'https://aretw0.github.io' }}
   ASTRO_BASE: ${{ inputs.base || vars.ASTRO_BASE || '/astro-vault' }}
+  PUBLIC_COMMIT_HASH: ${{ github.sha }}
+  PUBLIC_BUILD_ID: ${{ github.run_id }}
+  PUBLIC_REPO_URL: https://github.com/${{ github.repository }}
 
 jobs:
   build:
