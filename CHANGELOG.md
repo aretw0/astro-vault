@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.2](https://github.com/aretw0/astro-vault/compare/v0.4.1...v0.4.2) (2026-02-17)
+
+
+### ✨ Features
+
+* Add base layout component and GitHub Pages deployment workflow. ([f0b6858](https://github.com/aretw0/astro-vault/commit/f0b6858308ff05b2f03866327d1b0651a1dea3ed))
+
+
+### 📚 Documentation
+
+* **cleanup:** remover arquivos de onboarding redundantes da documentação do projeto ([c8c7c64](https://github.com/aretw0/astro-vault/commit/c8c7c6435c00df95b9c642b45f07072fdb848188))
+* document ADR-10 & ADR-11 for dynamic config and build metadata ([ebc060f](https://github.com/aretw0/astro-vault/commit/ebc060ff3005293fdafa0f294d1124e1b57c70c7))
+
 ### [0.4.1](https://github.com/aretw0/astro-vault/compare/v0.4.0...v0.4.1) (2026-02-15)
 
 
