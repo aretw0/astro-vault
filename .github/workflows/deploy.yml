@@ -1,18 +1,30 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Trigger the workflow only when a new version tag is pushed
+  # Automático: Quando uma tag de versão (v*) é criada
   push:
     tags:
       - "v*"
-  # Allows you to run this workflow manually from the Actions tab on GitHub.
+
+  # Manual: Permite rodar a qualquer momento pela aba Actions
   workflow_dispatch:
+    inputs:
+      site:
+        description: "Site URL (e.g. https://example.com)"
+        required: false
+      base:
+        description: "Base path (e.g. /repo-name)"
+        required: false
 
 # Allow this job to clone the repo and create a page deployment
 permissions:
   contents: read
   pages: write
   id-token: write
+
+env:
+  ASTRO_SITE: ${{ inputs.site || vars.ASTRO_SITE || 'https://aretw0.github.io' }}
+  ASTRO_BASE: ${{ inputs.base || vars.ASTRO_BASE || '/astro-vault' }}
 
 jobs:
   build:

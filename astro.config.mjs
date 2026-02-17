@@ -5,17 +5,16 @@ import syncAssets from './src/integrations/sync-assets.js';
 import remarkCallouts from './src/plugins/remark-callouts.js';
 import remarkWikiImageEmbeds from './src/plugins/remark-wiki-image-embeds.js';
 
-// ⚠️ USER ACTION REQUIRED: Update the repo name below
 // Base path configuration for GitHub Pages deployment
-// - Local development always uses '/'
-// - Production builds use '/your-repo-name'
-// TODO: Replace '/astro-vault' with your GitHub repository name
-const isProd = process.env.NODE_ENV === 'production';
-const base = isProd ? '/astro-vault' : '/';  // ← CHANGE THIS
+// - Local development always uses '/' by default
+// - Production builds use '/astro-vault' by default
+// - Can be overridden via ASTRO_SITE and ASTRO_BASE env vars
+const site = process.env.ASTRO_SITE || 'https://aretw0.github.io';
+const base = process.env.ASTRO_BASE || (process.env.NODE_ENV === 'production' ? '/astro-vault' : '/');
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://aretw0.github.io',
+  site,
   base,
   integrations: [syncAssets()],
   markdown: {
